@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "643443967023",
+    "project_id": "fake-prank-call",
+    "storage_bucket": "fake-prank-call.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643443967023:android:58b31523b0c43b613bb2da",
+        "android_client_info": {
+          "package_name": "com.mai.fake.prank.call.audio.call.app.recorder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_Za5ZisMrLFb74DccUs-n5VYNcmhyBMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
