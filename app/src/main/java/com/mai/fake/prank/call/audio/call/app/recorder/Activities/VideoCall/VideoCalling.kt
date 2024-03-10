@@ -1,4 +1,4 @@
-package com.mai.fake.prank.call.audio.call.app.recorder.VideoCall
+package com.mai.fake.prank.call.audio.call.app.recorder.Activities.VideoCall
 
 import android.Manifest
 import android.content.Context
@@ -129,7 +129,7 @@ import java.util.*
 
             Handler().postDelayed({
                 hideLoader()
-            }, 2000)
+            }, 5000)
         }
 
 
