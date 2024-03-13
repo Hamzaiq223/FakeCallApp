@@ -1,146 +1,118 @@
 package com.mai.fake.prank.call.audio.call.app.recorder.Activities.AudioCall
 
-import android.media.AudioAttributes
+import android.content.Context
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.widget.TextView
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.mai.fake.prank.call.audio.call.app.recorder.R
-import com.mai.fake.prank.call.audio.call.app.recorder.databinding.ActivityAudioCallBinding
-import java.io.IOException
 
 class AudioCall : AppCompatActivity() {
 
-    private lateinit var storage: FirebaseStorage
-    private lateinit var storageRef: StorageReference
     private lateinit var mediaPlayer: MediaPlayer
-    private lateinit var audioRefs: List<StorageReference>
-    private var currentAudioIndex = 0
-    private var timer: CountDownTimer? = null
-
-    private lateinit var audioCallBinding: ActivityAudioCallBinding
+    private lateinit var handler: Handler
+    private lateinit var audioFiles: MutableList<String>
+    private var currentAudioIndex: Int = 0
+    private lateinit var sharedPreferences: SharedPreferences
+    private var isPaused: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        audioCallBinding = DataBindingUtil.setContentView(this, R.layout.activity_audio_call)
+        setContentView(R.layout.activity_audio_call)
 
-        storage = FirebaseStorage.getInstance()
-        storageRef = storage.reference
-        mediaPlayer = MediaPlayer()
+        handler = Handler()
 
-        // Fetch audio files from Firebase Storage
-        fetchAudioFiles()
+        audioFiles = mutableListOf()
+
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+
+        // Start playing audio
+        playAudio()
     }
-
-    private fun fetchAudioFiles() {
-        val folderName = "Ronaldo"
-        val folderRef = storageRef.child(folderName)
-
-        folderRef.listAll().addOnSuccessListener { listResult ->
-            audioRefs = listResult.items.filter { it.name.endsWith(".mp3") || it.name.endsWith(".mpeg") } // Filter only audio files
-
-            // Start playing the first audio
-            if (audioRefs.isNotEmpty()) {
-                playAudio(audioRefs[currentAudioIndex])
-            }
-        }.addOnFailureListener {
-            // Handle error
-        }
-    }
-
-    private fun playAudio(audioRef: StorageReference) {
-        audioRef.downloadUrl.addOnSuccessListener { uri ->
-            try {
-                mediaPlayer.apply {
-                    reset() // Reset media player before playing new audio
-
-                    // Check if the URI is valid
-                    if (uri != null) {
-                        setDataSource(applicationContext, uri)
-                        prepare()
-
-                        // Set audio attributes after preparing the media player
-                        setAudioAttributes(
-                            AudioAttributes.Builder()
-                                .setUsage(AudioAttributes.USAGE_MEDIA)
-                                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                                .build()
-                        )
-
-                        start()
-
-                        // Set onCompletionListener to play the next audio when current audio finishes
-                        setOnCompletionListener {
-                            // Increment current audio index for the next audio
-                            currentAudioIndex = (currentAudioIndex + 1) % audioRefs.size
-                            if (currentAudioIndex < audioRefs.size) {
-                                playAudio(audioRefs[currentAudioIndex])
-                            }
-                        }
-                    } else {
-                        // Handle null URI
-                        // Log an error or show a message to the user
-                    }
-                }
-
-                // Start timer
-                startTimer(mediaPlayer.duration.toLong())
-
-            } catch (e: IOException) {
-                e.printStackTrace()
-                // Handle IO exception
-            } catch (e: IllegalStateException) {
-                e.printStackTrace()
-                // Handle illegal state exception
-            }
-        }.addOnFailureListener {
-            // Handle error
-        }
-    }
-
-
 
     override fun onResume() {
         super.onResume()
-        fetchAudioFiles()
+        if (isPaused) {
+            isPaused = false
+            playAudio()
+        }
     }
 
-    private fun startTimer(duration: Long) {
-        timer = object : CountDownTimer(duration, 1000) {
-            var elapsedTime = 0L
+    private fun playAudio() {
+        mediaPlayer = MediaPlayer()
+        val folderName = "Ronaldo"
+        val storage = FirebaseStorage.getInstance()
+        val storageRef = storage.reference.child(folderName)
 
-            override fun onTick(millisUntilFinished: Long) {
-                // Update TextView with timer text
-                elapsedTime += 1000
-                val totalSeconds = elapsedTime / 1000
-                val minutes = totalSeconds / 60
-                val seconds = totalSeconds % 60
-                audioCallBinding.tvTimer.text = String.format("%02d:%02d", minutes, seconds)
-            }
+        val lastPlayedAudioIndex = sharedPreferences.getInt("lastPlayedAudioIndex", -1)
 
-            override fun onFinish() {
-                // Do nothing when the timer finishes
+        storageRef.listAll().addOnSuccessListener { listResult ->
+            audioFiles.addAll(listResult.items.map { it.name })
+
+            if (audioFiles.isNotEmpty()) {
+                currentAudioIndex = if (lastPlayedAudioIndex != -1 && lastPlayedAudioIndex < audioFiles.size) {
+                    lastPlayedAudioIndex
+                } else {
+                    0
+                }
+
+                val nextAudioRef = storageRef.child(audioFiles[currentAudioIndex])
+
+                nextAudioRef.downloadUrl.addOnSuccessListener { uri ->
+                    mediaPlayer.apply {
+                        if (isPlaying) {
+                            stop()
+                            reset()
+                        }
+                        setDataSource(this@AudioCall, Uri.parse(uri.toString()))
+                        prepare()
+                        start()
+                    }
+
+                    // Start timer
+                    handler.postDelayed(updateTimer, 1000)
+
+                    // Set on completion listener
+                    mediaPlayer.setOnCompletionListener {
+                        // Move to the next audio file
+                        currentAudioIndex = (currentAudioIndex + 1) % audioFiles.size
+                        val editor = sharedPreferences.edit()
+                        editor.putInt("lastPlayedAudioIndex", currentAudioIndex)
+                        editor.apply()
+                        playAudio()
+                    }
+                }.addOnFailureListener {
+                    // Handle error
+                }
             }
+        }.addOnFailureListener {
+            // Handle error
         }
-        timer?.start()
+    }
+
+
+    private val updateTimer = object : Runnable {
+        override fun run() {
+            // Update your timer display here
+            handler.postDelayed(this, 1000)
+        }
     }
 
     override fun onStop() {
         super.onStop()
-        // Stop and release media player when activity stops
-        mediaPlayer.apply {
-            if (isPlaying) {
-                stop()
-            }
-            reset()
-            release()
+        mediaPlayer.release()
+        handler.removeCallbacks(updateTimer)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (mediaPlayer.isPlaying) {
+            mediaPlayer.pause()
+            isPaused = true
         }
-        // Cancel timer to prevent memory leaks
-        timer?.cancel()
     }
 }
