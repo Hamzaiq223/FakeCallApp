@@ -1,31 +1,28 @@
 package com.mai.fake.prank.call.audio.call.app.recorder.Activities.IncomingVideoCall
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.mai.fake.prank.call.audio.call.app.recorder.R
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.media.MediaPlayer
-import android.os.Build
-
-import android.os.Handler
-import android.os.VibrationEffect
-import android.os.Vibrator
+import android.os.*
 import android.widget.ImageView
-
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.mai.fake.prank.call.audio.call.app.recorder.Common.BlurBuilder
-import com.squareup.picasso.Picasso
-import com.squareup.picasso.Target
+import com.mai.fake.prank.call.audio.call.app.recorder.Common.CharacterImageHelper
+import com.mai.fake.prank.call.audio.call.app.recorder.R
+
+
 
 class IncomingVideoCall : AppCompatActivity() {
 
     private lateinit var storage: FirebaseStorage
     private lateinit var storageRef: StorageReference
-    private lateinit var imageView: ImageView
+    private lateinit var ivUser: ImageView
+    private lateinit var ivBlurBackground: ImageView
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var vibrator: Vibrator
     private val handler = Handler()
@@ -35,11 +32,19 @@ class IncomingVideoCall : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_incoming_video_call)
 
-        imageView = findViewById(R.id.ivImage)
+        ivUser = findViewById(R.id.ivUser)
+        ivBlurBackground = findViewById(R.id.ivImage)
         storage = FirebaseStorage.getInstance()
         storageRef = storage.reference
 
-        displayImageFromFolder("Ronaldo")
+        val context: Context = applicationContext // or any valid context
+        val characterDrawable: Int? = CharacterImageHelper.getCharacterImageResourceId(context, "harry_potter")
+
+        val originalBitmap: Bitmap =
+            characterDrawable?.let { BitmapFactory.decodeResource(resources, it) }!!
+        val blurredBitmap = BlurBuilder.blur(this, originalBitmap)
+
+        ivBlurBackground.setImageBitmap(blurredBitmap)
 
         // Initialize the MediaPlayer
         mediaPlayer = MediaPlayer.create(this, R.raw.iphone_ringtone)
@@ -58,49 +63,7 @@ class IncomingVideoCall : AppCompatActivity() {
         handler.post(vibrationRunnable)
     }
 
-    private fun displayImageFromFolder(folderName: String) {
-        val folderRef = storageRef.child(folderName)
 
-        folderRef.listAll()
-            .addOnSuccessListener { listResult ->
-                // Get the list of items (images) in the folder
-                val imageRefs = listResult.items
-
-                // Check if there are images in the folder
-                if (imageRefs.isNotEmpty()) {
-                    // Get the reference of the first image in the list
-                    val firstImageRef = imageRefs[0] // You can change this logic to select any other image
-
-                    firstImageRef.downloadUrl
-                        .addOnSuccessListener { uri ->
-                            val imageUrl = uri.toString()
-
-                            // Load the image from URL using Picasso (or any other library you prefer)
-                            Picasso.get().load(imageUrl).into(object : Target {
-                                override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                                    // Apply blur effect to the bitmap
-                                    val blurredBitmap = BlurBuilder.blur(this@IncomingVideoCall, bitmap!!)
-                                    imageView.setImageBitmap(blurredBitmap)
-                                }
-
-                                override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-                                    // Handle failure
-                                }
-
-                                override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-                                    // Handle loading
-                                }
-                            })
-                        }
-                        .addOnFailureListener { e ->
-                            // Handle error
-                        }
-                }
-            }
-            .addOnFailureListener { e ->
-                // Handle error
-            }
-    }
 
     // Method to start vibrating the device
     private fun startVibration() {
