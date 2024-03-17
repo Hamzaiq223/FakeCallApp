@@ -5,24 +5,28 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivUserImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_margin="10dp"
         android:src="@drawable/c_ronaldo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvUserName"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="C Ronaldo"
-        android:textStyle="bold"
+        android:text="Cristiano Ronaldo"
         android:textColor="@color/black"
         android:textSize="18dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/ivUserImage"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/ivUserImage"
         app:layout_constraintTop_toBottomOf="@+id/ivUserImage" />
 

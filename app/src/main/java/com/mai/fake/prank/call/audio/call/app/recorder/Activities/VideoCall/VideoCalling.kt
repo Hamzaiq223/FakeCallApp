@@ -70,6 +70,18 @@ import java.util.*
         super.onCreate(savedInstanceState)
         videoCallBinding = DataBindingUtil.setContentView(this, R.layout.activity_video_calling)
 
+        // Retrieve the string from the intent extras
+        val receivedString = intent.getStringExtra("characterName")
+
+        // Now you can use the receivedString as needed
+        if (receivedString != null) {
+            // Do something with the received string
+            Log.d("Received String", receivedString)
+        } else {
+            // Handle the case where the string is not found
+            Log.d("Received String", "String not found")
+        }
+
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
         storage = FirebaseStorage.getInstance()
