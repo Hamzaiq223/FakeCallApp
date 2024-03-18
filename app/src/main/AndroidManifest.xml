@@ -17,8 +17,11 @@
         android:theme="@style/Theme.FakeCall"
         tools:targetApi="31">
         <activity
+            android:name=".Chat"
+            android:exported="false" />
+        <activity
             android:name=".Activities.VideoCharacters.VideoCharacters"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,9 +31,7 @@
         <activity
             android:name=".Activities.IncomingVideoCall.IncomingVideoCall"
             android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.Design.NoActionBar"></activity>
         <activity
             android:name=".Activities.VideoCall.VideoCalling"
             android:exported="true"

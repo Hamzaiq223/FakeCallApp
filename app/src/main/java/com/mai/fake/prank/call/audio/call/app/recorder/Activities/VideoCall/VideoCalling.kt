@@ -37,7 +37,7 @@ import java.util.*
     private var currentCameraId: String? = null
     private var videoUrl: String = ""
     private var backgroundHandler: Handler? = null
-
+    val characterName : String = ""
     private var backgroundThread: HandlerThread? = null
 
     private lateinit var mediaPlayer: MediaPlayer
@@ -48,6 +48,8 @@ import java.util.*
     private lateinit var videoCallBinding: ActivityVideoCallingBinding
 
     private lateinit var audioManager: AudioManager
+
+    private var receivedString: String? = null
 
     private var isMuted = false
 
@@ -70,17 +72,7 @@ import java.util.*
         super.onCreate(savedInstanceState)
         videoCallBinding = DataBindingUtil.setContentView(this, R.layout.activity_video_calling)
 
-        // Retrieve the string from the intent extras
-        val receivedString = intent.getStringExtra("characterName")
-
-        // Now you can use the receivedString as needed
-        if (receivedString != null) {
-            // Do something with the received string
-            Log.d("Received String", receivedString)
-        } else {
-            // Handle the case where the string is not found
-            Log.d("Received String", "String not found")
-        }
+        receivedString = intent.getStringExtra("characterName")
 
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
@@ -88,7 +80,7 @@ import java.util.*
         storageRef = storage.reference
 
         showLoader()
-        playVideo()
+        receivedString?.let { playVideo(it) }
 
         videoCallBinding.btnVolume.setOnClickListener { toggleMute() }
 
@@ -106,8 +98,8 @@ import java.util.*
         videoCallBinding.tvBackCamera.setOnClickListener { switchCamera() }
     }
 
-        private fun playVideo() {
-            val folderName = "Ronaldo"
+        private fun playVideo(folderName: String) {
+
             val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
             var lastPlayedVideoIndex = sharedPreferences.getInt("lastPlayedVideoIndex", -1)
 
@@ -270,7 +262,7 @@ import java.util.*
     override fun onResume() {
         super.onResume()
         startBackgroundThread()
-        playVideo()
+        playVideo(receivedString!!)
         showLoader()
         if (videoUrl!!.isNotEmpty()) {
             videoCallBinding.videoView.setVideoURI(Uri.parse(videoUrl))

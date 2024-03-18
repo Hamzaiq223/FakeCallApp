@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.VideoCall.VideoCalling
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.CharacterListAdapter
 import com.mai.fake.prank.call.audio.call.app.recorder.Model.CharactersModel
 import com.mai.fake.prank.call.audio.call.app.recorder.R
 import com.mai.fake.prank.call.audio.call.app.recorder.databinding.ActivityVideoCallingBinding
 import com.mai.fake.prank.call.audio.call.app.recorder.databinding.ActivityVideoCharactersBinding
 
-class VideoCharacters : AppCompatActivity(),CharacterListAdapter.OnItemClickListener  {
+class VideoCharacters : AppCompatActivity(),CharacterListAdapter.Click{
 
     private lateinit var videoCallBinding: ActivityVideoCharactersBinding
 
@@ -26,13 +27,15 @@ class VideoCharacters : AppCompatActivity(),CharacterListAdapter.OnItemClickList
 
         val layoutManager = GridLayoutManager(this, 3)
         videoCallBinding.rvVideoCharacters.layoutManager = layoutManager
-        val adapter = CharacterListAdapter(this, itemList)
+        val adapter = CharacterListAdapter(this, itemList,this)
         videoCallBinding.rvVideoCharacters.adapter = adapter
     }
 
-    override fun onItemClick(character: CharactersModel) {
-        val intent = Intent(this, VideoCharacters::class.java)
-        intent.putExtra("characterName", character.folder_name) // Pass the string to the next activity
+    override fun onItemClick(charactersModel: CharactersModel) {
+        Toast.makeText(this, charactersModel.name, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this,VideoCalling::class.java)
+        intent.putExtra("characterName",charactersModel.folder_name)
         startActivity(intent)
     }
+
 }
