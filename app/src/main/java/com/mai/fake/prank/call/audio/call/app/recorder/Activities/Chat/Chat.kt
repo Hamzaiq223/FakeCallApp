@@ -8,7 +8,6 @@ import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.ChatAdapter
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.ChatQuestionAdapter
 import com.mai.fake.prank.call.audio.call.app.recorder.Model.QuestionsAnswer
 import com.mai.fake.prank.call.audio.call.app.recorder.Model.QuestionsModel
-
 import com.mai.fake.prank.call.audio.call.app.recorder.R
 import org.json.JSONArray
 import org.json.JSONObject
@@ -16,29 +15,26 @@ import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 
-
 class Chat : AppCompatActivity(), ChatAdapter.AnswerSetListener, ChatQuestionAdapter.Click {
 
     private lateinit var chatQuestionAdapter: ChatQuestionAdapter
-    private lateinit var chatAdapter: ChatAdapter
     private lateinit var rvQuestions: RecyclerView
     private lateinit var rvChat: RecyclerView
-    private var arrayList = ArrayList<QuestionsAnswer>()
+    private lateinit var chatAdapter: ChatAdapter
+    private val arrayList = ArrayList<QuestionsAnswer>()
     private var isAdded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-
         rvQuestions = findViewById(R.id.rvQuestions)
         rvChat = findViewById(R.id.rvChat)
 
-        val context: Context = this
         val resourceId = R.raw.characters
         val characterName = "Santa"
-        val questionsAnswers = getQuestionsAnswersForCharacter(context, resourceId, characterName)
+        val questionsAnswers = getQuestionsAnswersForCharacter(this, resourceId, characterName)
 
-        chatQuestionAdapter = ChatQuestionAdapter(context, questionsAnswers, this)
+        chatQuestionAdapter = ChatQuestionAdapter(this, questionsAnswers, this)
         rvQuestions.adapter = chatQuestionAdapter
 
         chatAdapter = ChatAdapter(arrayList, rvChat, rvQuestions, this)
@@ -56,6 +52,7 @@ class Chat : AppCompatActivity(), ChatAdapter.AnswerSetListener, ChatQuestionAda
                 jsonString.append(line)
             }
             val jsonObject = JSONObject(jsonString.toString())
+
             val charactersArray = jsonObject.getJSONArray("characters")
             for (i in 0 until charactersArray.length()) {
                 val characterObject = charactersArray.getJSONObject(i)
@@ -83,28 +80,29 @@ class Chat : AppCompatActivity(), ChatAdapter.AnswerSetListener, ChatQuestionAda
         return questionsAnswers
     }
 
-
-    override fun onAnswerSet(check: Boolean) {
-        isAdded = check
-    }
-
-    override fun onItemClick(position: Int, list: MutableList<QuestionsModel.QuestionsAnswer>) {
+    override fun onItemClick(position: Int, list: List<QuestionsModel.QuestionsAnswer>) {
         if (isAdded || arrayList.isEmpty()) {
             list[position].question?.let { list[position].answer?.let { it1 ->
-                QuestionsAnswer(it,
-                    it1
-                )
+                QuestionsAnswer(it, it1)
             } }
                 ?.let { arrayList.add(it) }
+
+            // Remove the item from the original list used by the adapter
+            val mutableList = list.toMutableList()
+            mutableList.removeAt(position)
+            chatQuestionAdapter.updateData(mutableList) // Update the data in the adapter
             chatAdapter.notifyDataSetChanged()
 
-            list.removeAt(position)
-            chatQuestionAdapter.notifyDataSetChanged()
             val lastItemPosition = arrayList.size - 1
             rvChat.scrollToPosition(lastItemPosition)
             rvChat.smoothScrollToPosition(lastItemPosition)
             isAdded = false
         }
     }
+
+    override fun onAnswerSet(check: Boolean) {
+        check?.let { isAdded = it }
+    }
+
 
 }
