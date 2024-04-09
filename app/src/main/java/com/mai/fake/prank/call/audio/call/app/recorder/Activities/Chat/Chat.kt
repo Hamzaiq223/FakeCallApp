@@ -1,11 +1,13 @@
 package com.mai.fake.prank.call.audio.call.app.recorder.Activities.Chat
 
 import android.content.Context
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.ChatAdapter
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.ChatQuestionAdapter
+import com.mai.fake.prank.call.audio.call.app.recorder.Common.FlashlightController
 import com.mai.fake.prank.call.audio.call.app.recorder.Model.QuestionsAnswer
 import com.mai.fake.prank.call.audio.call.app.recorder.Model.QuestionsModel
 import com.mai.fake.prank.call.audio.call.app.recorder.R
@@ -23,12 +25,17 @@ class Chat : AppCompatActivity(), ChatAdapter.AnswerSetListener, ChatQuestionAda
     private lateinit var chatAdapter: ChatAdapter
     private val arrayList = ArrayList<QuestionsAnswer>()
     private var isAdded = false
+    private var mediaPlayer: MediaPlayer? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
         rvQuestions = findViewById(R.id.rvQuestions)
         rvChat = findViewById(R.id.rvChat)
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.iphone_sms_tone)
+
 
         val resourceId = R.raw.characters
         val characterName = "Santa"
@@ -102,7 +109,23 @@ class Chat : AppCompatActivity(), ChatAdapter.AnswerSetListener, ChatQuestionAda
 
     override fun onAnswerSet(check: Boolean) {
         check?.let { isAdded = it }
+        val flashlightController = FlashlightController(this)
+        // To turn on the flashlight
+        flashlightController.turnOnFlash()
+        // To turn off the flashlight
+        flashlightController.turnOffFlash()
+
+        mediaPlayer?.start() // Start playing the ringtone if mediaPlayer is not null
+
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Release MediaPlayer resources
+        mediaPlayer?.release()
+        mediaPlayer = null
+    }
+
 
 
 }
