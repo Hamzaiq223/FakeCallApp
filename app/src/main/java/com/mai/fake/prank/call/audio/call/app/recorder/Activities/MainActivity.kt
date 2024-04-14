@@ -33,15 +33,14 @@ class MainActivity : AppCompatActivity(), VCAdapter.ClickListener, ACAdapter.Cli
 
         vcAdapter = VCAdapter(this, arrayList, this)
         binding.rvVideoCall.adapter = vcAdapter
-        binding.rvVideoCall.layoutManager = LinearLayoutManager(this)
+
 
         acAdapter = ACAdapter(this, arrayList, this)
         binding.rvAudioCall.adapter = acAdapter
-        binding.rvAudioCall.layoutManager = LinearLayoutManager(this)
+
 
         chatCharacterAdapter = ChatCharacterAdapter(this, arrayList, this)
         binding.rvChat.adapter = chatCharacterAdapter
-        binding.rvChat.layoutManager = LinearLayoutManager(this)
 
         binding.btnCLanguage.setOnClickListener {
             startActivity(Intent(this@MainActivity, Languages::class.java))
