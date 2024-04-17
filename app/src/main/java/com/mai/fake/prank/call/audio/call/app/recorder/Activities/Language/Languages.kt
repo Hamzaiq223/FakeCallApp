@@ -7,6 +7,7 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.MainActivity
@@ -33,6 +34,21 @@ class Languages : AppCompatActivity(), LanguagesAdapter.Click {
         arrayList.add(LanguageModel("Urdu", R.drawable.pakistan))
         arrayList.add(LanguageModel("Espanol", R.drawable.spain_flag))
         arrayList.add(LanguageModel("Hindi", R.drawable.india))
+        arrayList.add(LanguageModel("Hindi", R.drawable.france_flag))
+        arrayList.add(LanguageModel("Hindi", R.drawable.veitnam_flag))
+        arrayList.add(LanguageModel("Hindi", R.drawable.germany))
+        arrayList.add(LanguageModel("Hindi", R.drawable.portugal_flag))
+        arrayList.add(LanguageModel("Hindi", R.drawable.italy_flag))
+        arrayList.add(LanguageModel("Hindi", R.drawable.uae_flag))
+        arrayList.add(LanguageModel("Hindi", R.drawable.japan_flag))
+        arrayList.add(LanguageModel("Hindi", R.drawable.south_korea_flag))
+        arrayList.add(LanguageModel("Hindi", R.drawable.south_africa_flag))
+        arrayList.add(LanguageModel("Hindi", R.drawable.israel_flag))
+        arrayList.add(LanguageModel("Hindi", R.drawable.china))
+        arrayList.add(LanguageModel("Hindi", R.drawable.turkey))
+        arrayList.add(LanguageModel("Hindi", R.drawable.indonesia_flag))
+        arrayList.add(LanguageModel("Hindi", R.drawable.netherland_flag))
+        arrayList.add(LanguageModel("Hindi", R.drawable.nigeria))
 
         languagesAdapter = LanguagesAdapter(this, arrayList, this)
         binding.rvLanguages.adapter = languagesAdapter
@@ -59,7 +75,8 @@ class Languages : AppCompatActivity(), LanguagesAdapter.Click {
         SharedHelper.saveString(this, "language", language)
     }
 
-    private fun changeLanguage(context: Context, language: String) {
+     fun changeLanguage(context: Context, language: String) {
+
         val locale: Locale = when (language) {
             "French" -> Locale("fr")
             "Urdu" -> Locale("ur")

@@ -19,21 +19,22 @@
         android:theme="@style/Theme.FakeCall"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.Splash.Splash"
+            android:exported="true"
+            android:theme="@style/Theme.Design.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".Activities.Language.Languages"
             android:exported="false" />
         <activity
             android:name=".Activities.Chat.Chat"
             android:exported="true"
             android:theme="@style/Theme.Design.Light.NoActionBar">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity
-            android:name=".Activities.VideoCharacters.VideoCharacters"
-            android:exported="true">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -41,6 +42,17 @@
 
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".Activities.VideoCharacters.VideoCharacters"
+            android:exported="true">
+
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
+
+
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
         </activity>
         <activity
             android:name=".Activities.IncomingVideoCall.IncomingVideoCall"
@@ -55,14 +67,9 @@
             android:exported="true" />
         <activity
             android:name=".Activities.MainActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar"
-            android:exported="true">
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
+            android:exported="true"
+            android:theme="@style/Theme.Design.Light.NoActionBar">
 
-
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
         </activity>
     </application>
 

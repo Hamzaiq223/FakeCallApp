@@ -24,6 +24,7 @@ class VCAdapter(private val context: Context, private val itemList: List<Charact
         val item = itemList[position]
         holder.userImage.setImageResource(item.image)
         holder.userName.text = item.name
+        holder.userName.visibility = View.GONE
 
         holder.clCharacter.setOnClickListener {
             click.onItemClick(item)

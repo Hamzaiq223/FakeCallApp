@@ -11,4 +11,10 @@
     <string name="call_coming">Call Coming...</string>
     <string name="harry_potter">Harry Potter</string>
     <string name="search">Search</string>
+    <string name="settings">Settings</string>
+    <string name="sound">Sound</string>
+    <string name="vibration">Vibration</string>
+    <string name="flash">Flash</string>
+    <string name="language">Language</string>
+    <string name="rate_us">Rate Us</string>
 </resources>

@@ -25,7 +25,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
-                android:src="@drawable/harry_potter"
+                android:src="@drawable/pakistan"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -43,10 +43,13 @@
                 app:layout_constraintStart_toEndOf="@+id/ivCountryFlag"
                 app:layout_constraintTop_toTopOf="@+id/ivCountryFlag" />
 
-            <RadioButton
-                android:id="@+id/rbLanguage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/ivTick"
+                android:layout_margin="20dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_tick"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

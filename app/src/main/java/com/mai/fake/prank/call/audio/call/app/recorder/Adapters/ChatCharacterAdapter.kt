@@ -23,6 +23,7 @@ class ChatCharacterAdapter(private val context: Context, private val itemList: L
         val item = itemList[position]
         holder.userImage.setImageResource(item.image)
         holder.userName.text = item.name
+        holder.userName.visibility = View.GONE
 
         holder.clCharacter.setOnClickListener {
             click.onCharacterClick(item)
