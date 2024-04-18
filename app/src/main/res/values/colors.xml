@@ -15,4 +15,7 @@
     <color name="green">#008000</color>
     <color name="light_green">#77EB00</color>
     <color name="progress_color">#E98708</color>
+    <color name="screen_background_color">#E4E4E4</color>
+    <color name="heading_color">#282828</color>
+    <color name="character_status_bar_color">#4D6730C3</color>
 </resources>

@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.MainActivity
@@ -26,29 +28,34 @@ class Languages : AppCompatActivity(), LanguagesAdapter.Click {
     private lateinit var languagesAdapter: LanguagesAdapter
     private lateinit var sharedHelper: SharedHelper
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_languages)
 
-        arrayList.add(LanguageModel("English", R.drawable.uk_flag))
-        arrayList.add(LanguageModel("Urdu", R.drawable.pakistan))
-        arrayList.add(LanguageModel("Espanol", R.drawable.spain_flag))
-        arrayList.add(LanguageModel("Hindi", R.drawable.india))
-        arrayList.add(LanguageModel("Hindi", R.drawable.france_flag))
-        arrayList.add(LanguageModel("Hindi", R.drawable.veitnam_flag))
-        arrayList.add(LanguageModel("Hindi", R.drawable.germany))
-        arrayList.add(LanguageModel("Hindi", R.drawable.portugal_flag))
-        arrayList.add(LanguageModel("Hindi", R.drawable.italy_flag))
-        arrayList.add(LanguageModel("Hindi", R.drawable.uae_flag))
-        arrayList.add(LanguageModel("Hindi", R.drawable.japan_flag))
-        arrayList.add(LanguageModel("Hindi", R.drawable.south_korea_flag))
-        arrayList.add(LanguageModel("Hindi", R.drawable.south_africa_flag))
-        arrayList.add(LanguageModel("Hindi", R.drawable.israel_flag))
-        arrayList.add(LanguageModel("Hindi", R.drawable.china))
-        arrayList.add(LanguageModel("Hindi", R.drawable.turkey))
-        arrayList.add(LanguageModel("Hindi", R.drawable.indonesia_flag))
-        arrayList.add(LanguageModel("Hindi", R.drawable.netherland_flag))
-        arrayList.add(LanguageModel("Hindi", R.drawable.nigeria))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = getColor(R.color.screen_background_color)
+        }
+
+        arrayList.add(LanguageModel("English", R.drawable.uk_flag,"English"))
+        arrayList.add(LanguageModel("اردو", R.drawable.pakistan,"Urdu"))
+        arrayList.add(LanguageModel("Espanol", R.drawable.spain_flag,"Spanish"))
+        arrayList.add(LanguageModel("हिंदी", R.drawable.india,"Hindi"))
+        arrayList.add(LanguageModel("français", R.drawable.france_flag,"French"))
+        arrayList.add(LanguageModel("Tiếng Việt", R.drawable.veitnam_flag,"vietnamese"))
+        arrayList.add(LanguageModel("Deutsch", R.drawable.germany,"German"))
+        arrayList.add(LanguageModel("Português", R.drawable.portugal_flag,"Portuguese"))
+        arrayList.add(LanguageModel("Italiano", R.drawable.italy_flag,"Italian"))
+        arrayList.add(LanguageModel("عربي", R.drawable.uae_flag,"Arabic"))
+        arrayList.add(LanguageModel("日本語", R.drawable.japan_flag,"Japnese"))
+        arrayList.add(LanguageModel("한국인", R.drawable.south_korea_flag,"Korean"))
+        arrayList.add(LanguageModel("Afrikaans", R.drawable.south_africa_flag,"Afrikaans"))
+        arrayList.add(LanguageModel("עִברִית", R.drawable.israel_flag,"Hebrew"))
+        arrayList.add(LanguageModel("中国人", R.drawable.china,"Chinese"))
+        arrayList.add(LanguageModel("Türkçe", R.drawable.turkey,"Turkish"))
+        arrayList.add(LanguageModel("bahasa Indonesia", R.drawable.indonesia_flag,"Indonesian"))
+        arrayList.add(LanguageModel("Dutch", R.drawable.netherland_flag,"Dutch"))
+        arrayList.add(LanguageModel("harshen hausa", R.drawable.nigeria,"Hausa"))
 
         languagesAdapter = LanguagesAdapter(this, arrayList, this)
         binding.rvLanguages.adapter = languagesAdapter
@@ -76,11 +83,26 @@ class Languages : AppCompatActivity(), LanguagesAdapter.Click {
     }
 
      fun changeLanguage(context: Context, language: String) {
-
         val locale: Locale = when (language) {
             "French" -> Locale("fr")
             "Urdu" -> Locale("ur")
             "Espanol" -> Locale("es")
+            "عربي" -> Locale("ar")
+            "اردو" -> Locale("ur")
+            "日本語" -> Locale("ja")
+            "Português" -> Locale("pt")
+            "한국인" -> Locale("ko")
+            "Italiano" -> Locale("it")
+            "Afrikaans" -> Locale("af")
+            "Türkçe" -> Locale("tr")
+            "中国人" -> Locale("zh")
+            "Tiếng Việt" -> Locale("vi")
+            "Dutch" -> Locale("nl")
+            "עִברִית" -> Locale("iw")
+            "bahasa Indonesia" -> Locale("in")
+            "हिंदी" -> Locale("hi")
+            "harshen hausa" -> Locale("ha")
+            "Deutsch" -> Locale("de")
             else -> Locale("en")
         }
 

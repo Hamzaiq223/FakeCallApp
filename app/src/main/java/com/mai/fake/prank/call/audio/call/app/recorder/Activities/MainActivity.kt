@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.media.Image
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -16,10 +17,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.Language.Languages
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.VideoCharacters.VideoCharacters
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.ACAdapter
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.ChatCharacterAdapter
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.VCAdapter
@@ -36,9 +39,14 @@ class MainActivity : AppCompatActivity(), VCAdapter.ClickListener, ACAdapter.Cli
     private lateinit var acAdapter: ACAdapter
     private lateinit var chatCharacterAdapter: ChatCharacterAdapter
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = getColor(R.color.app_color)
+        }
 
         arrayList.add(CharactersModel("C Ronaldo", "Ronaldo", R.drawable.c_ronaldo))
         arrayList.add(CharactersModel("Rose", "Rose", R.drawable.rose))
@@ -58,7 +66,10 @@ class MainActivity : AppCompatActivity(), VCAdapter.ClickListener, ACAdapter.Cli
 
         binding.btnSetting.setOnClickListener {
             showRatingDialog()
+        }
 
+        binding.clMoreVideos.setOnClickListener {
+            startActivity(Intent(this@MainActivity,VideoCharacters::class.java))
         }
     }
 
@@ -78,11 +89,15 @@ class MainActivity : AppCompatActivity(), VCAdapter.ClickListener, ACAdapter.Cli
         val ivFlash = dialogView.findViewById<ImageView>(R.id.ivFlash)
         val tvLanguage = dialogView.findViewById<TextView>(R.id.tvLanguage)
         val tvRateUs = dialogView.findViewById<TextView>(R.id.tvRateUs)
-
+        val ivCross = dialogView.findViewById<ImageView>(R.id.ivCross)
         // Check if any view is null
         if (ivVolume == null || ivVibration == null || ivFlash == null || tvLanguage == null || tvRateUs == null) {
             Log.e("showRatingDialog", "One or more views are null")
             return
+        }
+
+        ivCross.setOnClickListener{
+            ratingAlertDialog.dismiss()
         }
 
         // Set onClickListener for tvLanguage
@@ -91,45 +106,12 @@ class MainActivity : AppCompatActivity(), VCAdapter.ClickListener, ACAdapter.Cli
             ratingAlertDialog.dismiss()
         }
 
+
         ratingAlertDialog.show()
     }
 
 
 
-    private fun showDialog() {
-        // Create a dialog object
-        val dialog = Dialog(this)
-
-        // Set the content view
-        dialog.setContentView(R.layout.layout_setting_dialog)
-
-        // Find views in dialog layout
-        val ivVolume = dialog.findViewById<ImageView>(R.id.ivVolume)
-        val ivVibation = dialog.findViewById<ImageView>(R.id.ivVibation)
-        val ivFlash = dialog.findViewById<ImageView>(R.id.ivFlash)
-        val tvLanguage = dialog.findViewById<TextView>(R.id.tvLanguage)
-        val tvRateUs = dialog.findViewById<TextView>(R.id.tvRateUs)
-
-
-        // Set click listener for submit button
-        tvLanguage.setOnClickListener {
-            startActivity(Intent(this@MainActivity, Languages::class.java))
-        }
-
-        tvRateUs.setOnClickListener {
-
-        }
-
-
-
-        // Set the dialog window properties
-        val window: Window? = dialog.window
-        window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
-        window?.setGravity(Gravity.CENTER)
-
-        // Show the dialog
-        dialog.show()
-    }
 
     override fun onItemClick(charactersModel: CharactersModel) {
         // Handle video call item click

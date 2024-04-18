@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.mai.fake.prank.call.audio.call.app.recorder.Common.SharedHelper
 import com.mai.fake.prank.call.audio.call.app.recorder.LanguageModel
@@ -34,8 +35,7 @@ class LanguagesAdapter(
             holder.tvLanguage.text = language.name
             holder.ivFlag.setImageResource(language.image)
 
-
-            holder.cvLanguage.setOnClickListener {
+            holder.clLanguage.setOnClickListener {
                 clickPosition = holder.adapterPosition // Save the clicked position
                 click.onLanguageClick(language.name)
                 notifyDataSetChanged() // Refresh
@@ -44,8 +44,10 @@ class LanguagesAdapter(
             val selectedLanguage = SharedHelper.getString(context,"language", "")
             if (selectedLanguage == language.name) {
                 holder.ivTick.visibility = View.VISIBLE
+                holder.clLanguage.setBackgroundResource(R.drawable.edit_text_background)
             } else {
                 holder.ivTick.visibility = View.GONE
+                holder.clLanguage.background = null
             }
 
 //            if (clickPosition == position) {
@@ -67,7 +69,7 @@ class LanguagesAdapter(
         } else {
             val filterPattern = text.toLowerCase().trim()
             for (language in list) {
-                if (language.name.toLowerCase().contains(filterPattern)) {
+                if (language.language.toLowerCase().contains(filterPattern)) {
                     filteredLanguageList.add(language)
                 }
             }
@@ -79,7 +81,7 @@ class LanguagesAdapter(
         val ivFlag: ImageView = itemView.findViewById(R.id.ivCountryFlag)
         val ivTick: ImageView = itemView.findViewById(R.id.ivTick)
         val tvLanguage: TextView = itemView.findViewById(R.id.tvLanguage)
-        val cvLanguage: CardView = itemView.findViewById(R.id.cvLanguage)
+        val clLanguage: ConstraintLayout = itemView.findViewById(R.id.clLanguage)
     }
 
     interface Click {

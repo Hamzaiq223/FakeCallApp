@@ -17,4 +17,5 @@
     <string name="flash">Flash</string>
     <string name="language">Language</string>
     <string name="rate_us">Rate Us</string>
+    <string name="select_language">Select Language</string>
 </resources>
