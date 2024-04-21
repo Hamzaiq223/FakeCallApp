@@ -1,12 +1,21 @@
 package com.mai.fake.prank.call.audio.call.app.recorder.Activities.Chat
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.media.MediaPlayer
+import android.os.Build
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.ChatAdapter
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.ChatQuestionAdapter
+import com.mai.fake.prank.call.audio.call.app.recorder.Common.BlurBuilder
+import com.mai.fake.prank.call.audio.call.app.recorder.Common.CharacterImageHelper
+import com.mai.fake.prank.call.audio.call.app.recorder.Common.CharacterNameHelper
 import com.mai.fake.prank.call.audio.call.app.recorder.Common.FlashlightController
 import com.mai.fake.prank.call.audio.call.app.recorder.Model.QuestionsAnswer
 import com.mai.fake.prank.call.audio.call.app.recorder.Model.QuestionsModel
@@ -22,26 +31,52 @@ class Chat : AppCompatActivity(), ChatAdapter.AnswerSetListener, ChatQuestionAda
     private lateinit var chatQuestionAdapter: ChatQuestionAdapter
     private lateinit var rvQuestions: RecyclerView
     private lateinit var rvChat: RecyclerView
+    private lateinit var ivImage: ImageView
+
+    private lateinit var ivBack: ImageView
+    private lateinit var tvName: TextView
     private lateinit var chatAdapter: ChatAdapter
     private val arrayList = ArrayList<QuestionsAnswer>()
     private var isAdded = false
     private var mediaPlayer: MediaPlayer? = null
+    private var receivedString: String? = null
 
-
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
         rvQuestions = findViewById(R.id.rvQuestions)
         rvChat = findViewById(R.id.rvChat)
-
+        ivImage = findViewById(R.id.ivImage)
+        ivBack = findViewById(R.id.ivBack)
+        tvName  =findViewById<TextView>(R.id.tvName)
         mediaPlayer = MediaPlayer.create(this, R.raw.iphone_sms_tone)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = getColor(R.color.white)
+        }
+
+        receivedString = intent.getStringExtra("characterName")
+
+        val context: Context = applicationContext // or any valid context
+        val characterDrawable: Int? = CharacterImageHelper.getCharacterImageResourceId(context, receivedString!!)
+        val characterName = CharacterNameHelper.getCharacterNameByFolderName(receivedString!!)
+        tvName.text = characterName
+
+        val originalBitmap: Bitmap =
+            characterDrawable?.let { BitmapFactory.decodeResource(resources, it) }!!
+
+        ivImage.setImageBitmap(originalBitmap)
+
+        ivBack.setOnClickListener{
+            super.onBackPressed()
+        }
 
         val resourceId = R.raw.characters
-        val characterName = "Santa"
-        val questionsAnswers = getQuestionsAnswersForCharacter(this, resourceId, characterName)
+        val questionsAnswers =
+            receivedString?.let { getQuestionsAnswersForCharacter(this, resourceId, it) }
 
-        chatQuestionAdapter = ChatQuestionAdapter(this, questionsAnswers, this)
+        chatQuestionAdapter = questionsAnswers?.let { ChatQuestionAdapter(this, it, this) }!!
         rvQuestions.adapter = chatQuestionAdapter
 
         chatAdapter = ChatAdapter(arrayList, rvChat, rvQuestions, this)

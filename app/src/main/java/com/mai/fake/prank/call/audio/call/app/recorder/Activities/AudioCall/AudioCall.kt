@@ -1,7 +1,6 @@
 package com.mai.fake.prank.call.audio.call.app.recorder.Activities.AudioCall
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -25,25 +24,28 @@ class AudioCall : AppCompatActivity() {
     private lateinit var storageRef: StorageReference
     private lateinit var binding: ActivityAudioCallBinding
     private var isAudioPlaying = false
+    private var receivedString: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_audio_call)
 
+        receivedString = intent.getStringExtra("characterName")
+
         storage = FirebaseStorage.getInstance()
         storageRef = storage.reference
 
-        playAudioWithTimer()
+        playAudioWithTimer(receivedString)
     }
 
-    private fun playAudioWithTimer() {
+    private fun playAudioWithTimer(receivedString: String?) {
         val folderName = "Ronaldo"
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         var lastPlayedAudioIndex = sharedPreferences.getInt("lastPlayedAudioIndex", -1)
 
-        val folderRef = storageRef.child(folderName)
+        val folderRef = receivedString?.let { storageRef.child(it) }
 
-        folderRef.listAll()
+        folderRef!!.listAll()
             .addOnSuccessListener { listResult ->
                 val audioRefs = listResult.items as ArrayList<StorageReference>
                 if (audioRefs.isNotEmpty() && !isAudioPlaying) {
@@ -103,7 +105,7 @@ class AudioCall : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        playAudioWithTimer()
+        playAudioWithTimer(receivedString)
     }
 
     override fun onPause() {

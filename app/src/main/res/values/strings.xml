@@ -18,4 +18,7 @@
     <string name="language">Language</string>
     <string name="rate_us">Rate Us</string>
     <string name="select_language">Select Language</string>
+    <string name="this_action_can_be_contain_ads">This action can be contain ads...</string>
+    <string name="fake_audio_call">Fake Audio Call</string>
+    <string name="fakes_chat">Fake Chat</string>
 </resources>

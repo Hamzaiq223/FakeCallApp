@@ -326,7 +326,6 @@
         }
       ]
     },
-
     {
       "name": "Ghost",
       "questions_answers": [
@@ -392,8 +391,6 @@
         }
       ]
     },
-
-
     {
       "name": "Scientists",
       "questions_answers": [

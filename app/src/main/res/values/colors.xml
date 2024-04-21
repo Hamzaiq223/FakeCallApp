@@ -18,4 +18,5 @@
     <color name="screen_background_color">#E4E4E4</color>
     <color name="heading_color">#282828</color>
     <color name="character_status_bar_color">#4D6730C3</color>
+    <color name="chat_grey">#EBEBEB</color>
 </resources>

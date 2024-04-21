@@ -182,14 +182,14 @@
                         android:layout_marginTop="25dp"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout1"
+                        app:layout_constraintEnd_toStartOf="@+id/clMoreAudios"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
                         tools:itemCount="1"
                         tools:listitem="@layout/item_character" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout1"
+                        android:id="@+id/clMoreAudios"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginEnd="10dp"
@@ -256,14 +256,14 @@
                         android:orientation="horizontal"
                         android:visibility="visible"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+                        app:layout_constraintEnd_toStartOf="@+id/clMoreChat"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
                         tools:itemCount="1"
                         tools:listitem="@layout/item_character" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout"
+                        android:id="@+id/clMoreChat"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginEnd="10dp"

@@ -14,7 +14,8 @@ object CharacterImageHelper {
         characterImagesMap = HashMap()
         // Add character names and their corresponding resource IDs here
         characterImagesMap?.put("c_ronaldo", R.drawable.c_ronaldo) // Replace character1 with your actual drawable name
-        characterImagesMap?.put("harry_potter",R.drawable.harry_potter);
+        characterImagesMap?.put("Harry",R.drawable.harry_potter);
+        characterImagesMap?.put("Santa",R.drawable.santa);
         // Add more mappings for other characters as needed
     }
 

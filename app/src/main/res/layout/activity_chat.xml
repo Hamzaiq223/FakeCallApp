@@ -27,11 +27,11 @@
                 android:layout_marginBottom="5dp"
                 android:src="@drawable/harry_potter"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView"
+                app:layout_constraintEnd_toStartOf="@+id/tvName"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/harry_potter"
@@ -44,6 +44,7 @@
                 app:layout_constraintTop_toTopOf="@+id/ivImage" />
 
             <ImageView
+                android:id="@+id/ivBack"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"

@@ -21,6 +21,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.AudioCharacters.AudioCharacters
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.ChatCharacters.ChatCharacters
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.Language.Languages
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.VideoCharacters.VideoCharacters
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.ACAdapter
@@ -71,6 +73,15 @@ class MainActivity : AppCompatActivity(), VCAdapter.ClickListener, ACAdapter.Cli
         binding.clMoreVideos.setOnClickListener {
             startActivity(Intent(this@MainActivity,VideoCharacters::class.java))
         }
+
+        binding.clMoreAudios.setOnClickListener {
+            startActivity(Intent(this@MainActivity,ChatCharacters::class.java))
+        }
+
+        binding.clMoreChat.setOnClickListener {
+            startActivity(Intent(this@MainActivity,AudioCharacters::class.java))
+        }
+
     }
 
     private fun showRatingDialog() {
