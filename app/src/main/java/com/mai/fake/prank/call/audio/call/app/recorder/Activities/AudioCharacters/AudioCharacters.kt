@@ -43,7 +43,6 @@ class AudioCharacters : AppCompatActivity() ,CharacterListAdapter.Click{
     }
 
     override fun onItemClick(charactersModel: CharactersModel) {
-        Toast.makeText(this, charactersModel.name, Toast.LENGTH_SHORT).show()
         val intent = Intent(this, AudioCall::class.java)
         intent.putExtra("characterName",charactersModel.folder_name)
         startActivity(intent)

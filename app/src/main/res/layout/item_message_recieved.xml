@@ -14,14 +14,17 @@
 
     <TextView
         android:id="@+id/text_message_body"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/chat_bubble_message_received"
         android:maxWidth="240dp"
         android:minWidth="80dp"
-        android:padding="8dp"
+        android:padding="10dp"
         android:text="hi man, how are you?"
         android:textColor="#ffffff"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:fontFamily="@font/inter_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

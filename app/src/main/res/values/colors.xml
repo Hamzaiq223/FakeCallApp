@@ -19,4 +19,6 @@
     <color name="heading_color">#282828</color>
     <color name="character_status_bar_color">#4D6730C3</color>
     <color name="chat_grey">#EBEBEB</color>
+    <color name="tealish_green">#00C013</color>
+    <color name="kelly_green">#38B70C</color>
 </resources>

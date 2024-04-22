@@ -19,7 +19,7 @@ class ChatQuestionAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
-            LayoutInflater.from(context).inflate(R.layout.item_questions_layout, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.item_question_layout, parent, false)
         return ViewHolder(view)
     }
 
