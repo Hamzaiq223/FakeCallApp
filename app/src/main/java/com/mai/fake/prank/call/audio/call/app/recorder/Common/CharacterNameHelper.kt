@@ -1,5 +1,7 @@
 package com.mai.fake.prank.call.audio.call.app.recorder.Common
 
+import com.mai.fake.prank.call.audio.call.app.recorder.R
+
 object CharacterNameHelper {
 
     // HashMap to store folder names and their corresponding character names
@@ -12,6 +14,11 @@ object CharacterNameHelper {
         folderCharacterMap?.put("folder1", "c_ronaldo") // Replace folder1 with your actual folder name
         folderCharacterMap?.put("Harry", "Harry Potter")
         folderCharacterMap?.put("Santa", "Santa Claus")
+        folderCharacterMap?.put("My Love", "My Love");
+        folderCharacterMap?.put( "Taylor Swift","Taylor Swift" )
+        folderCharacterMap?.put( "Beiber","Justin Bieber" )
+        folderCharacterMap?.put("Ghost","Ghost")
+        folderCharacterMap?.put("Scientists","Scientists")
         // Add more mappings for other folders as needed
     }
 

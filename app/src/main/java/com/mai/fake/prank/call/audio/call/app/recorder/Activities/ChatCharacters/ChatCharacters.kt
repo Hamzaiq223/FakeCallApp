@@ -36,6 +36,12 @@ class ChatCharacters : AppCompatActivity() , CharacterListAdapter.Click{
         val itemList = ArrayList<CharactersModel>()
         itemList.add(CharactersModel("Santa Claus", "Santa", R.drawable.santa))
         itemList.add(CharactersModel("Harry  Potter", "Harry", R.drawable.harry_potter))
+        itemList.add(CharactersModel("My Love", "My Love", R.drawable.my_love))
+        itemList.add(CharactersModel("Taylor Swift", "Taylor Swift", R.drawable.taylor_swift))
+        itemList.add(CharactersModel("Justin Bieber", "Beiber", R.drawable.justin_beiber))
+        itemList.add(CharactersModel("Ghost", "Ghost", R.drawable.ghost))
+        itemList.add(CharactersModel("Scientists", "Scientists", R.drawable.scientists))
+
 
         val layoutManager = GridLayoutManager(this, 3)
         activityChatCharactersBinding.rvChatCharacters.layoutManager = layoutManager

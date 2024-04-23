@@ -2,6 +2,7 @@ package com.mai.fake.prank.call.audio.call.app.recorder.Common
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import com.mai.fake.prank.call.audio.call.app.recorder.Model.CharactersModel
 import com.mai.fake.prank.call.audio.call.app.recorder.R
 
 object CharacterImageHelper {
@@ -16,6 +17,11 @@ object CharacterImageHelper {
         characterImagesMap?.put("c_ronaldo", R.drawable.c_ronaldo) // Replace character1 with your actual drawable name
         characterImagesMap?.put("Harry",R.drawable.harry_potter);
         characterImagesMap?.put("Santa",R.drawable.santa);
+        characterImagesMap?.put("My Love",R.drawable.my_love);
+        characterImagesMap?.put( "Taylor Swift", R.drawable.taylor_swift)
+        characterImagesMap?.put( "Beiber", R.drawable.justin_beiber)
+        characterImagesMap?.put("Ghost", R.drawable.ghost)
+        characterImagesMap?.put("Scientists", R.drawable.scientists)
         // Add more mappings for other characters as needed
     }
 
