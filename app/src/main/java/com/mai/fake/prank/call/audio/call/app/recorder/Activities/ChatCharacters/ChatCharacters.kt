@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.Chat.Chat
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.MainActivity
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.VideoCall.VideoCalling
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.CharacterListAdapter
 import com.mai.fake.prank.call.audio.call.app.recorder.Model.CharactersModel
@@ -31,6 +32,10 @@ class ChatCharacters : AppCompatActivity() , CharacterListAdapter.Click{
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor = getColor(R.color.character_status_bar_color)
+        }
+
+        activityChatCharactersBinding.ivSettings.setOnClickListener{
+             MainActivity.showSettingDialog(this)
         }
 
         val itemList = ArrayList<CharactersModel>()
