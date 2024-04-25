@@ -4,9 +4,12 @@ package com.mai.fake.prank.call.audio.call.app.recorder.Activities.IncomingVideo
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.media.MediaPlayer
 import android.os.*
+import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.storage.FirebaseStorage
@@ -27,24 +30,36 @@ class IncomingVideoCall : AppCompatActivity() {
     private lateinit var vibrator: Vibrator
     private val handler = Handler()
     private var isVibrating = false
+    private var receivedString: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_incoming_video_call)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.statusBarColor = Color.TRANSPARENT
+        }
 
         ivUser = findViewById(R.id.ivUser)
         ivBlurBackground = findViewById(R.id.ivImage)
         storage = FirebaseStorage.getInstance()
         storageRef = storage.reference
 
+        receivedString = intent.getStringExtra("characterName")
+
         val context: Context = applicationContext // or any valid context
-        val characterDrawable: Int? = CharacterImageHelper.getCharacterImageResourceId(context, "harry_potter")
+        val characterDrawable: Int? = CharacterImageHelper.getCharacterImageResourceId(context, receivedString!!)
 
         val originalBitmap: Bitmap =
             characterDrawable?.let { BitmapFactory.decodeResource(resources, it) }!!
         val blurredBitmap = BlurBuilder.blur(this, originalBitmap)
 
         ivBlurBackground.setImageBitmap(blurredBitmap)
+        ivUser.setImageBitmap(originalBitmap)
 
         // Initialize the MediaPlayer
         mediaPlayer = MediaPlayer.create(this, R.raw.iphone_ringtone)
@@ -80,6 +95,7 @@ class IncomingVideoCall : AppCompatActivity() {
         }
     }
 
+
     // Method to stop vibrating the device
     private fun stopVibration() {
         try {
@@ -106,10 +122,11 @@ class IncomingVideoCall : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        stopVibration()
         // Release the MediaPlayer and stop the vibration when the activity is destroyed
         mediaPlayer?.let {
             it.release()
         }
-        stopVibration()
+
     }
 }

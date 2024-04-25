@@ -14,7 +14,7 @@ object CharacterImageHelper {
     private fun initializeCharacterImagesMap() {
         characterImagesMap = HashMap()
         // Add character names and their corresponding resource IDs here
-        characterImagesMap?.put("c_ronaldo", R.drawable.c_ronaldo) // Replace character1 with your actual drawable name
+        characterImagesMap?.put("Ronaldo", R.drawable.c_ronaldo) // Replace character1 with your actual drawable name
         characterImagesMap?.put("Harry",R.drawable.harry_potter);
         characterImagesMap?.put("Santa",R.drawable.santa);
         characterImagesMap?.put("My Love",R.drawable.my_love);
@@ -22,6 +22,7 @@ object CharacterImageHelper {
         characterImagesMap?.put( "Beiber", R.drawable.justin_beiber)
         characterImagesMap?.put("Ghost", R.drawable.ghost)
         characterImagesMap?.put("Scientists", R.drawable.scientists)
+        characterImagesMap?.put("Leo Messi", R.drawable.leo_messi)
         // Add more mappings for other characters as needed
     }
 
