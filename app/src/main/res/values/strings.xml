@@ -22,4 +22,6 @@
     <string name="fake_audio_call">Fake Audio Call</string>
     <string name="fakes_chat">Fake Chat</string>
     <string name="how_do_you_feel_about_the_call">How do you feel about the call?</string>
+    <string name="message">Message</string>
+    <string name="reminder">Reminder</string>
 </resources>
