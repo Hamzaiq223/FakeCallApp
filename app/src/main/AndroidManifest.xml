@@ -19,7 +19,7 @@
         android:theme="@style/Theme.FakeCall"
         tools:targetApi="31">
         <activity
-            android:name=".Feedback"
+            android:name=".Activities.FeedbackScreen.Feedback"
             android:exported="false" />
         <activity
             android:name=".Activities.ChatCharacters.ChatCharacters"

@@ -48,9 +48,6 @@ class VideoCharacters : AppCompatActivity(),CharacterListAdapter.Click{
         val intent = Intent(this,IncomingVideoCall::class.java)
         intent.putExtra("characterName",charactersModel.folder_name)
         startActivity(intent)
-//        val intent = Intent(this,VideoCalling::class.java)
-//        intent.putExtra("characterName",charactersModel.folder_name)
-//        startActivity(intent)
     }
 
 }

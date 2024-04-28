@@ -16,8 +16,10 @@
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -39,25 +41,110 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <Button
-            android:id="@+id/tvBackCamera"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="back camera"
-            android:backgroundTint="@color/heading_color"
-            app:layout_constraintBottom_toBottomOf="@+id/videoView"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/btnVolume"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="mute"
-            android:backgroundTint="@color/heading_color"
-            app:layout_constraintBottom_toBottomOf="@+id/videoView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvBackCamera" />
+            <LinearLayout
+                android:id="@+id/tvBackCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+
+                android:background="@drawable/background"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="2dp"
+                                      android:src="@drawable/video_icon" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnVolume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:background="@drawable/background"
+                android:gravity="center"
+                tools:layout_editor_absoluteY="240dp">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="2dp"
+                    android:src="@drawable/icon_mic" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivEndCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:layout_marginEnd="20dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/icon_end_call"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/background"
+                android:gravity="center"
+                tools:layout_editor_absoluteY="558dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="2dp"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/add_user_male" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/background"
+                android:gravity="center"
+                tools:layout_editor_absoluteX="363dp"
+                tools:layout_editor_absoluteY="683dp">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/dots" />
+
+            </LinearLayout>
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

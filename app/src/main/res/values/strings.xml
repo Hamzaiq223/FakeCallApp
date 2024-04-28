@@ -24,4 +24,7 @@
     <string name="how_do_you_feel_about_the_call">How do you feel about the call?</string>
     <string name="message">Message</string>
     <string name="reminder">Reminder</string>
+    <string name="close">Close</string>
+    <string name="good">Good</string>
+    <string name="not_good">Not Good</string>
 </resources>

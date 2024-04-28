@@ -109,7 +109,7 @@ class IncomingVideoCall : AppCompatActivity() {
     }
 
     private fun showButton(){
-        val delayMillis = 3000 // Delay in milliseconds (2 seconds in this example)
+        val delayMillis = 1500 // Delay in milliseconds (2 seconds in this example)
         buttonHandler.postDelayed({
             // Code block to be executed after the delay
             btnSlide.visibility = View.GONE

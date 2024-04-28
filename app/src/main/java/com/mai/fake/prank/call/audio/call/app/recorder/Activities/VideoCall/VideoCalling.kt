@@ -75,6 +75,7 @@ import java.util.*
 
     override fun onBackPressed() {
         super.onBackPressed()
+
     }
 
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -348,4 +349,8 @@ import java.util.*
         }
         return null
     }
-}
+        override fun onDestroy() {
+            super.onDestroy()
+
+        }
+    }

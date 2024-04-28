@@ -1,13 +1,21 @@
 package com.mai.fake.prank.call.audio.call.app.recorder.Activities.AudioCall
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.media.MediaPlayer
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.mai.fake.prank.call.audio.call.app.recorder.Common.BlurBuilder
+import com.mai.fake.prank.call.audio.call.app.recorder.Common.CharacterImageHelper
 import com.mai.fake.prank.call.audio.call.app.recorder.R
 import com.mai.fake.prank.call.audio.call.app.recorder.databinding.ActivityAudioCallBinding
 
@@ -32,8 +40,26 @@ class AudioCall : AppCompatActivity() {
 
         receivedString = intent.getStringExtra("characterName")
 
+        val context: Context = applicationContext // or any valid context
+        val characterDrawable: Int? = CharacterImageHelper.getCharacterImageResourceId(context, receivedString!!)
+
+        val originalBitmap: Bitmap =
+            characterDrawable?.let { BitmapFactory.decodeResource(resources, it) }!!
+        val blurredBitmap = BlurBuilder.blur(this, originalBitmap)
+
+        binding.ivBlurImage.setImageBitmap(blurredBitmap)
+        binding.ivUser.setImageBitmap(originalBitmap)
+
         storage = FirebaseStorage.getInstance()
         storageRef = storage.reference
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.statusBarColor = Color.TRANSPARENT
+        }
 
         playAudioWithTimer(receivedString)
     }
