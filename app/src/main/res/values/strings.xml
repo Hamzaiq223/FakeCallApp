@@ -27,4 +27,5 @@
     <string name="close">Close</string>
     <string name="good">Good</string>
     <string name="not_good">Not Good</string>
+    <string name="incoming_audio_call">Incoming Call.....</string>
 </resources>

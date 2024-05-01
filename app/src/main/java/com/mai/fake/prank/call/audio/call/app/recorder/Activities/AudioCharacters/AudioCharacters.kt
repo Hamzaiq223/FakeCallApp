@@ -9,6 +9,8 @@ import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.AudioCall.AudioCall
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.IncomingAudioCall.IncomingAudioCall
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.MainActivity
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.VideoCall.VideoCalling
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.CharacterListAdapter
 import com.mai.fake.prank.call.audio.call.app.recorder.Model.CharactersModel
@@ -28,6 +30,10 @@ class AudioCharacters : AppCompatActivity() ,CharacterListAdapter.Click{
             finish()
         }
 
+        audioCharactersBinding.ivSettings.setOnClickListener{
+            MainActivity.showSettingDialog(this)
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor = getColor(R.color.character_status_bar_color)
         }
@@ -43,7 +49,7 @@ class AudioCharacters : AppCompatActivity() ,CharacterListAdapter.Click{
     }
 
     override fun onItemClick(charactersModel: CharactersModel) {
-        val intent = Intent(this, AudioCall::class.java)
+        val intent = Intent(this, IncomingAudioCall::class.java)
         intent.putExtra("characterName",charactersModel.folder_name)
         startActivity(intent)
     }

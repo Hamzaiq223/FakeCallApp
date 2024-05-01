@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Activities.IncomingVideoCall.IncomingVideoCall">
 
+
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
@@ -130,12 +131,11 @@
         android:id="@+id/layoutReminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="20dp"
         android:layout_marginStart="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/btnSlide"
-        app:layout_constraintStart_toStartOf="@+id/btnSlide"
-        >
+        app:layout_constraintStart_toStartOf="@+id/btnSlide">
 
         <ImageView
             android:id="@+id/ivReminder"
@@ -152,11 +152,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/reminder"
-            android:textColor="@color/white"
-            />
+            android:textColor="@color/white" />
 
     </LinearLayout>
-
 
 
 

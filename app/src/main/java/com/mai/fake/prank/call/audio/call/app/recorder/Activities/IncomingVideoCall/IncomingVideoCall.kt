@@ -39,8 +39,9 @@ class IncomingVideoCall : AppCompatActivity() {
     private lateinit var vibrator: Vibrator
     private val handler = Handler()
     private var isVibrating = false
-    private var receivedString: String? = null
     private val buttonHandler = Handler()
+    private var receivedString: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

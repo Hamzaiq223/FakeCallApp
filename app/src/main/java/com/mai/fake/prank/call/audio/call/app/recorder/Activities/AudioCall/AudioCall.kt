@@ -61,7 +61,22 @@ class AudioCall : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
 
+        if (mediaPlayer == null) {
+            mediaPlayer = MediaPlayer()
+        }
+
+        mediaPlayer!!.setOnCompletionListener {
+            // Media playback completed, perform necessary actions
+            releaseMediaPlayerAndTimer()
+            // Add any other actions you need to perform after audio ends
+        }
+
         playAudioWithTimer(receivedString)
+
+        binding.ivEndCall.setOnClickListener{
+            finish()
+        }
+
     }
 
     private fun playAudioWithTimer(receivedString: String?) {
@@ -81,9 +96,7 @@ class AudioCall : AppCompatActivity() {
                     nextAudioRef.downloadUrl
                         .addOnSuccessListener { uri ->
                             val audioUrl = uri.toString()
-                            if (mediaPlayer == null) {
-                                mediaPlayer = MediaPlayer()
-                            }
+
                             try {
                                 mediaPlayer!!.reset()
                                 mediaPlayer!!.setDataSource(audioUrl)
@@ -146,5 +159,24 @@ class AudioCall : AppCompatActivity() {
             isTimerRunning = false
         }
         isAudioPlaying = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        releaseMediaPlayerAndTimer()
+    }
+
+    private fun releaseMediaPlayerAndTimer() {
+        if (mediaPlayer != null) {
+            mediaPlayer!!.stop()
+            mediaPlayer!!.release()
+            mediaPlayer = null
+        }
+        if (timer != null) {
+            timer!!.cancel()
+            isTimerRunning = false
+        }
+
+        finish()
     }
 }
