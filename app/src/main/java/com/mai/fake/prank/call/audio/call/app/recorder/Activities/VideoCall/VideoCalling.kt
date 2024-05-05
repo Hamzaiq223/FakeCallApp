@@ -30,7 +30,7 @@ import com.mai.fake.prank.call.audio.call.app.recorder.databinding.ActivityVideo
 
 import java.util.*
 
-    class VideoCalling : AppCompatActivity() {
+class VideoCalling : AppCompatActivity(),  MediaPlayer.OnCompletionListener {
 
     private val REQUEST_CAMERA_PERMISSION = 200
     private val TAG = "CameraActivity"
@@ -73,12 +73,7 @@ import java.util.*
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-
-    }
-
-        override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         videoCallBinding = DataBindingUtil.setContentView(this, R.layout.activity_video_calling)
 
@@ -114,48 +109,58 @@ import java.util.*
         }
 
         videoCallBinding.tvBackCamera.setOnClickListener { switchCamera() }
+
+
+        videoCallBinding.videoView.setOnCompletionListener(this)
+
+        videoCallBinding.ivEndCall.setOnClickListener{
+            videoCallBinding.videoView.stopPlayback()
+            // Finish the activity
+            finish()
+        }
     }
 
-        private fun playVideo(folderName: String) {
+    private fun playVideo(folderName: String) {
 
-            val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-            var lastPlayedVideoIndex = sharedPreferences.getInt("lastPlayedVideoIndex", -1)
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        var lastPlayedVideoIndex = sharedPreferences.getInt("lastPlayedVideoIndex", -1)
 
-            val folderRef = storageRef.child(folderName)
+        val folderRef = storageRef.child(folderName)
 
-            folderRef.listAll().addOnSuccessListener { listResult ->
-                val videoRefs = listResult.items.filter { it.name.endsWith(".mp4") } // Filter only video files
+        folderRef.listAll().addOnSuccessListener { listResult ->
+            val videoRefs = listResult.items.filter { it.name.endsWith(".mp4") } // Filter only video files
 
-                if (videoRefs.isNotEmpty()) {
-                    val nextVideoIndex = (lastPlayedVideoIndex + 1) % videoRefs.size
+            if (videoRefs.isNotEmpty()) {
+                val nextVideoIndex = (lastPlayedVideoIndex + 1) % videoRefs.size
 
-                    val nextVideoRef = videoRefs[nextVideoIndex]
+                val nextVideoRef = videoRefs[nextVideoIndex]
 
-                    nextVideoRef.downloadUrl.addOnSuccessListener { uri ->
-                        videoUrl = uri.toString()
+                nextVideoRef.downloadUrl.addOnSuccessListener { uri ->
+                    videoUrl = uri.toString()
 
-                        videoCallBinding.videoView.setVideoURI(Uri.parse(videoUrl))
-                        hideLoader()
-                        videoCallBinding.videoView.start()
+                    videoCallBinding.videoView.setVideoURI(Uri.parse(videoUrl))
+                    hideLoader()
+                    videoCallBinding.videoView.start()
 
-                        val editor = sharedPreferences.edit()
-                        editor.putInt("lastPlayedVideoIndex", nextVideoIndex)
-                        editor.apply()
-                    }.addOnFailureListener {
-                        // Handle error
-                    }
+                    val editor = sharedPreferences.edit()
+                    editor.putInt("lastPlayedVideoIndex", nextVideoIndex)
+                    editor.apply()
+                }.addOnFailureListener {
+                    // Handle error
                 }
-            }.addOnFailureListener {
-                // Handle error
             }
-
-            Handler().postDelayed({
-                hideLoader()
-            }, 5000)
+        }.addOnFailureListener {
+            // Handle error
         }
 
+        Handler().postDelayed({
+            hideLoader()
+        }, 5000)
+    }
 
-        private fun showLoader() {
+
+
+    private fun showLoader() {
         videoCallBinding.progressBar.visibility = View.VISIBLE
     }
 
@@ -174,6 +179,14 @@ import java.util.*
         }.start()
     }
 
+     override fun onCompletion(mp: MediaPlayer) {
+        // This method will be called when the video playback is complete
+        // Stop the MediaPlayer
+        mp.stop()
+        // Finish the activity
+        finish()
+    }
+
     private val surfaceTextureListener = object : TextureView.SurfaceTextureListener {
         override fun onSurfaceTextureAvailable(surfaceTexture: SurfaceTexture, width: Int, height: Int) {
             openCamera()
@@ -190,22 +203,22 @@ import java.util.*
         }
     }
 
-        private val cameraStateCallback = object : CameraDevice.StateCallback() {
-            override fun onOpened(camera: CameraDevice) {
-                cameraDevice = camera
-                createCameraPreview()
-            }
-
-            override fun onDisconnected(camera: CameraDevice) {
-                camera.close()
-                cameraDevice = null
-            }
-
-            override fun onError(camera: CameraDevice, error: Int) {
-                camera.close()
-                cameraDevice = null
-            }
+    private val cameraStateCallback = object : CameraDevice.StateCallback() {
+        override fun onOpened(camera: CameraDevice) {
+            cameraDevice = camera
+            createCameraPreview()
         }
+
+        override fun onDisconnected(camera: CameraDevice) {
+            camera.close()
+            cameraDevice = null
+        }
+
+        override fun onError(camera: CameraDevice, error: Int) {
+            camera.close()
+            cameraDevice = null
+        }
+    }
     private fun openCamera() {
         try {
             val cameraId = getFrontCameraId()
@@ -349,8 +362,5 @@ import java.util.*
         }
         return null
     }
-        override fun onDestroy() {
-            super.onDestroy()
 
-        }
-    }
+}

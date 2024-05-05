@@ -12,6 +12,8 @@ android {
         enabled = true
     }
 
+
+
     defaultConfig {
         applicationId "com.mai.fake.prank.call.audio.call.app.recorder"
         minSdk 21
@@ -37,6 +39,8 @@ android {
     }
 }
 
+
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -54,4 +58,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.8'
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
     implementation "com.ncorti:slidetoact:0.11.0"
+
+    implementation 'com.tbuonomo:dotsindicator:5.0'
+
 }

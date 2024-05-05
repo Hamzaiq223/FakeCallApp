@@ -37,6 +37,7 @@ class VideoCharacters : AppCompatActivity(),CharacterListAdapter.Click{
         val itemList = ArrayList<CharactersModel>()
         itemList.add(CharactersModel("Cristiano Ronaldo", "Ronaldo", R.drawable.c_ronaldo))
         itemList.add(CharactersModel("Lionel Messi", "Leo Messi", R.drawable.leo_messi))
+        itemList.add(CharactersModel("Santa Claus", "Santa", R.drawable.santa))
 
         val layoutManager = GridLayoutManager(this, 3)
         videoCallBinding.rvVideoCharacters.layoutManager = layoutManager

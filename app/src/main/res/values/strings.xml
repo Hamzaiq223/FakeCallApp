@@ -28,4 +28,6 @@
     <string name="good">Good</string>
     <string name="not_good">Not Good</string>
     <string name="incoming_audio_call">Incoming Call.....</string>
+    <string name="start">Start</string>
+    <string name="next">Next</string>
 </resources>
