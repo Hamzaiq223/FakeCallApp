@@ -63,11 +63,16 @@ class IncomingAudioCall : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
 
+        binding.btnReturn.setOnClickListener{
+            finish()
+        }
+
         binding.ivAttendCall.setOnClickListener{
             val intent = Intent(this@IncomingAudioCall, AudioCall::class.java)
             intent.putExtra("characterName", receivedString)
             startActivity(intent)
             remove()
+            showButton()
         }
 
         // Initialize the MediaPlayer
@@ -96,6 +101,16 @@ class IncomingAudioCall : AppCompatActivity() {
         binding.ivEndCall.setOnClickListener{
             finish()
         }
+    }
+
+    private fun showButton(){
+        val delayMillis = 1500 // Delay in milliseconds (2 seconds in this example)
+        buttonHandler.postDelayed({
+            // Code block to be executed after the delay
+            binding.layoutAttendCall.visibility = View.GONE
+            binding.layoutEndCall.visibility = View.GONE
+            binding.btnReturn.visibility = View.VISIBLE
+        }, delayMillis.toLong())
     }
 
     private fun startVibration() {
