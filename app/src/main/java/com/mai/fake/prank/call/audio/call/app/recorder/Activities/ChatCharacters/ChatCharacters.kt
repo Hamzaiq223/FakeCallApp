@@ -4,18 +4,15 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.Chat.Chat
-import com.mai.fake.prank.call.audio.call.app.recorder.Activities.MainActivity
-import com.mai.fake.prank.call.audio.call.app.recorder.Activities.VideoCall.VideoCalling
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.MainActivity.MainActivity
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.CharacterListAdapter
 import com.mai.fake.prank.call.audio.call.app.recorder.Model.CharactersModel
 import com.mai.fake.prank.call.audio.call.app.recorder.R
 import com.mai.fake.prank.call.audio.call.app.recorder.databinding.ActivityChatCharactersBinding
-import com.mai.fake.prank.call.audio.call.app.recorder.databinding.ActivityVideoCharactersBinding
 
 class ChatCharacters : AppCompatActivity() , CharacterListAdapter.Click{
     private lateinit var activityChatCharactersBinding: ActivityChatCharactersBinding

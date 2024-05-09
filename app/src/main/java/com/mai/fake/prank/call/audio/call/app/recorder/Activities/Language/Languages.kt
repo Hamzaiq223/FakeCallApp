@@ -8,11 +8,10 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.mai.fake.prank.call.audio.call.app.recorder.Activities.MainActivity
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.MainActivity.MainActivity
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.LanguagesAdapter
 import com.mai.fake.prank.call.audio.call.app.recorder.Common.SharedHelper
 import com.mai.fake.prank.call.audio.call.app.recorder.LanguageModel

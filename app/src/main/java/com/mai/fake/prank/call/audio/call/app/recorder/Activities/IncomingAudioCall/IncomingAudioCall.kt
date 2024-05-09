@@ -110,6 +110,7 @@ class IncomingAudioCall : AppCompatActivity() {
             binding.layoutAttendCall.visibility = View.GONE
             binding.layoutEndCall.visibility = View.GONE
             binding.btnReturn.visibility = View.VISIBLE
+            binding.textView3.setText("Call Ended")
         }, delayMillis.toLong())
     }
 

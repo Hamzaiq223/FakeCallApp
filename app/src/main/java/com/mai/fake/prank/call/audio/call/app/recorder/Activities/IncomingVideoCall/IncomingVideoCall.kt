@@ -41,7 +41,7 @@ class IncomingVideoCall : AppCompatActivity() {
     private var isVibrating = false
     private val buttonHandler = Handler()
     private var receivedString: String? = null
-
+    private lateinit var tvCallStatus : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,8 +59,9 @@ class IncomingVideoCall : AppCompatActivity() {
         ivBlurBackground = findViewById(R.id.ivImage)
         layoutMessage = findViewById(R.id.layoutMessage)
         layoutReminder = findViewById(R.id.layoutReminder)
-        btnSlide = findViewById(R.id.btnSlide);
-        btnReturn = findViewById(R.id.btnReturn);
+        btnSlide = findViewById(R.id.btnSlide)
+        btnReturn = findViewById(R.id.btnReturn)
+        tvCallStatus = findViewById(R.id.textView3)
         storage = FirebaseStorage.getInstance()
         storageRef = storage.reference
 
@@ -117,6 +118,7 @@ class IncomingVideoCall : AppCompatActivity() {
             layoutMessage.visibility = View.GONE
             layoutReminder.visibility = View.GONE
             btnReturn.visibility = View.VISIBLE
+            tvCallStatus.setText("Call Ended")
         }, delayMillis.toLong())
     }
 

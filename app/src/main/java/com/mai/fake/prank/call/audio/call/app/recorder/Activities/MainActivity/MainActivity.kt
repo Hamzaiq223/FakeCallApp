@@ -1,30 +1,24 @@
-package com.mai.fake.prank.call.audio.call.app.recorder.Activities
+package com.mai.fake.prank.call.audio.call.app.recorder.Activities.MainActivity
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.media.Image
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.Window
-import android.view.WindowManager
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.AudioCall.AudioCall
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.AudioCharacters.AudioCharacters
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.Chat.Chat
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.ChatCharacters.ChatCharacters
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.IncomingAudioCall.IncomingAudioCall
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.IncomingVideoCall.IncomingVideoCall
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.Language.Languages
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.VideoCharacters.VideoCharacters
 import com.mai.fake.prank.call.audio.call.app.recorder.Adapters.ACAdapter
@@ -40,6 +34,7 @@ class MainActivity : AppCompatActivity(), VCAdapter.ClickListener, ACAdapter.Cli
 
     private lateinit var binding: ActivityMainBinding
     private val arrayList = ArrayList<CharactersModel>()
+    private val chatArrayList = ArrayList<CharactersModel>()
     private lateinit var vcAdapter: VCAdapter
     private lateinit var acAdapter: ACAdapter
     private lateinit var chatCharacterAdapter: ChatCharacterAdapter
@@ -54,8 +49,8 @@ class MainActivity : AppCompatActivity(), VCAdapter.ClickListener, ACAdapter.Cli
         }
 
         arrayList.add(CharactersModel("C Ronaldo", "Ronaldo", R.drawable.c_ronaldo))
-        arrayList.add(CharactersModel("Rose", "Rose", R.drawable.rose))
-        arrayList.add(CharactersModel("Lisa", "Lisa", R.drawable.lisa))
+        arrayList.add(CharactersModel("Leo Messi", "Leo Messi", R.drawable.leo_messi))
+        arrayList.add(CharactersModel("Santa Claus","Santa",R.drawable.santa))
         arrayList.add(CharactersModel("Taylor Swift", "Taylor Swift", R.drawable.taylor_swift))
 
         vcAdapter = VCAdapter(this, arrayList, this)
@@ -65,8 +60,12 @@ class MainActivity : AppCompatActivity(), VCAdapter.ClickListener, ACAdapter.Cli
         acAdapter = ACAdapter(this, arrayList, this)
         binding.rvAudioCall.adapter = acAdapter
 
+        chatArrayList.add(CharactersModel("Santa Claus","Santa",R.drawable.santa))
+        chatArrayList.add(CharactersModel("Harry Potter","Harry",R.drawable.harry_potter))
+        chatArrayList.add(CharactersModel("Justin Beiber","Beiber",R.drawable.justin_beiber))
+        chatArrayList.add(CharactersModel("Taylor Swift", "Taylor Swift", R.drawable.taylor_swift))
 
-        chatCharacterAdapter = ChatCharacterAdapter(this, arrayList, this)
+        chatCharacterAdapter = ChatCharacterAdapter(this, chatArrayList, this)
         binding.rvChat.adapter = chatCharacterAdapter
 
         binding.btnSetting.setOnClickListener {
@@ -178,14 +177,20 @@ class MainActivity : AppCompatActivity(), VCAdapter.ClickListener, ACAdapter.Cli
     }
 
     override fun onItemClick(charactersModel: CharactersModel) {
-        // Handle video call item click
+        val intent = Intent(this, IncomingVideoCall::class.java)
+        intent.putExtra("characterName",charactersModel.folder_name)
+        startActivity(intent)
     }
 
     override fun onClick(charactersModel: CharactersModel) {
-        // Handle audio call item click
+        val intent = Intent(this, IncomingAudioCall::class.java)
+        intent.putExtra("characterName",charactersModel.folder_name)
+        startActivity(intent)
     }
 
     override fun onCharacterClick(charactersModel: CharactersModel) {
-        // Handle chat character item click
+        val intent = Intent(this, Chat::class.java)
+        intent.putExtra("characterName",charactersModel.folder_name)
+        startActivity(intent)
     }
 }

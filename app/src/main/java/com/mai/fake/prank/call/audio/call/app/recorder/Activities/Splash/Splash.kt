@@ -12,7 +12,7 @@ import android.view.View
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.Language.Languages
-import com.mai.fake.prank.call.audio.call.app.recorder.Activities.MainActivity
+import com.mai.fake.prank.call.audio.call.app.recorder.Activities.MainActivity.MainActivity
 import com.mai.fake.prank.call.audio.call.app.recorder.Common.SharedHelper
 import com.mai.fake.prank.call.audio.call.app.recorder.R
 
