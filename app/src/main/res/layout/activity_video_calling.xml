@@ -51,7 +51,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
-                android:id="@+id/tvBackCamera"
+                android:id="@+id/layoutHideView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
@@ -59,15 +59,14 @@
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
 
-                android:background="@drawable/background"
                 android:gravity="center">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/ivCamera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="2dp"
-                                      android:src="@drawable/video_icon" />
+                    android:src="@drawable/icon_camera_on" />
 
             </LinearLayout>
 
@@ -79,16 +78,15 @@
                 android:layout_gravity="center"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:background="@drawable/background"
                 android:gravity="center"
-                tools:layout_editor_absoluteY="240dp">
+                >
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:id="@+id/ivVolume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="2dp"
-                    android:src="@drawable/icon_mic" />
+                    android:src="@drawable/icon_mic_on" />
 
             </LinearLayout>
 
@@ -106,23 +104,22 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <LinearLayout
-                android:id="@+id/linearLayout4"
+                android:id="@+id/layoutRotate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/background"
                 android:gravity="center"
-                tools:layout_editor_absoluteY="558dp">
+                >
 
                 <ImageView
+                    android:id="@+id/ivRotateCamera"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="2dp"
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/add_user_male" />
+                    android:src="@drawable/icon_rotation" />
 
             </LinearLayout>
 
@@ -130,18 +127,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/background"
                 android:gravity="center"
                 tools:layout_editor_absoluteX="363dp"
                 tools:layout_editor_absoluteY="683dp">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/dots" />
+                    android:src="@drawable/icon_more" />
 
             </LinearLayout>
         </LinearLayout>

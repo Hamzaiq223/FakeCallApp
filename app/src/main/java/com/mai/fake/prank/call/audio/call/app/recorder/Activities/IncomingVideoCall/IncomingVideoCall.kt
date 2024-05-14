@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.FirebaseApp
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.VideoCall.VideoCalling
@@ -54,6 +55,8 @@ class IncomingVideoCall : AppCompatActivity() {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             window.statusBarColor = Color.TRANSPARENT
         }
+
+        FirebaseApp.initializeApp(this)
 
         ivUser = findViewById(R.id.ivUser)
         ivBlurBackground = findViewById(R.id.ivImage)

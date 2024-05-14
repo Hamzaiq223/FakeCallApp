@@ -58,6 +58,8 @@ class VideoCalling : AppCompatActivity(),  MediaPlayer.OnCompletionListener {
 
     private var isMuted = false
 
+    private var isHide = false
+
     private var previousVolume = 0
 
     private fun toggleMute() {
@@ -65,11 +67,16 @@ class VideoCalling : AppCompatActivity(),  MediaPlayer.OnCompletionListener {
             // Unmute the device volume
             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, previousVolume, 0)
             isMuted = false
+            videoCallBinding.ivVolume.setImageResource(R.drawable.icon_mic_on)
+
+
         } else {
             // Mute the device volume
             previousVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0)
             isMuted = true
+            videoCallBinding.ivVolume.setImageResource(R.drawable.icon_mic_off)
+
         }
     }
 
@@ -87,7 +94,10 @@ class VideoCalling : AppCompatActivity(),  MediaPlayer.OnCompletionListener {
         showLoader()
         receivedString?.let { playVideo(it) }
 
-        videoCallBinding.btnVolume.setOnClickListener { toggleMute() }
+        videoCallBinding.btnVolume.setOnClickListener {
+            toggleMute()
+        }
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.decorView.systemUiVisibility =
@@ -108,8 +118,23 @@ class VideoCalling : AppCompatActivity(),  MediaPlayer.OnCompletionListener {
             throw RuntimeException(e)
         }
 
-        videoCallBinding.tvBackCamera.setOnClickListener { switchCamera() }
+        videoCallBinding.ivRotateCamera.setOnClickListener {
+            switchCamera()
+        }
 
+        videoCallBinding.layoutHideView.setOnClickListener{
+            if (isHide) {
+                isMuted = false
+                videoCallBinding.textureView.visibility = View.VISIBLE
+                videoCallBinding.ivCamera.setImageResource(R.drawable.icon_camera_on)
+
+            } else {
+                // Mute the device volume
+                videoCallBinding.textureView.visibility = View.GONE
+                isMuted = true
+                videoCallBinding.ivCamera.setImageResource(R.drawable.icon_camera_off)
+            }
+        }
 
         videoCallBinding.videoView.setOnCompletionListener(this)
 
