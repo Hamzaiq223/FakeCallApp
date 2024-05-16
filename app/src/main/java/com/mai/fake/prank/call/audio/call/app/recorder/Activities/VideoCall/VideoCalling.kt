@@ -94,7 +94,7 @@ class VideoCalling : AppCompatActivity(),  MediaPlayer.OnCompletionListener {
         showLoader()
         receivedString?.let { playVideo(it) }
 
-        videoCallBinding.btnVolume.setOnClickListener {
+        videoCallBinding.ivVolume.setOnClickListener {
             toggleMute()
         }
 
@@ -122,17 +122,17 @@ class VideoCalling : AppCompatActivity(),  MediaPlayer.OnCompletionListener {
             switchCamera()
         }
 
-        videoCallBinding.layoutHideView.setOnClickListener{
+        videoCallBinding.ivCamera.setOnClickListener{
             if (isHide) {
-                isMuted = false
+                isHide = false
                 videoCallBinding.textureView.visibility = View.VISIBLE
                 videoCallBinding.ivCamera.setImageResource(R.drawable.icon_camera_on)
 
             } else {
-                // Mute the device volume
                 videoCallBinding.textureView.visibility = View.GONE
-                isMuted = true
+                isHide = true
                 videoCallBinding.ivCamera.setImageResource(R.drawable.icon_camera_off)
+
             }
         }
 

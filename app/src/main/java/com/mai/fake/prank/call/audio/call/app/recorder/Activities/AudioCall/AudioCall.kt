@@ -38,6 +38,10 @@ class AudioCall : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_audio_call)
 
+        if (mediaPlayer == null) {
+            mediaPlayer = MediaPlayer()
+        }
+
         receivedString = intent.getStringExtra("characterName")
 
         val context: Context = applicationContext // or any valid context
@@ -61,9 +65,7 @@ class AudioCall : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
 
-        if (mediaPlayer == null) {
-            mediaPlayer = MediaPlayer()
-        }
+
 
         mediaPlayer!!.setOnCompletionListener {
             // Media playback completed, perform necessary actions
@@ -80,7 +82,6 @@ class AudioCall : AppCompatActivity() {
     }
 
     private fun playAudioWithTimer(receivedString: String?) {
-        val folderName = "Ronaldo"
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         var lastPlayedAudioIndex = sharedPreferences.getInt("lastPlayedAudioIndex", -1)
 

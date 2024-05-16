@@ -1,2 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Chiamata Falsa</string>
+    <string name="name">Harry Potter</string>
+    <string name="incoming_video_call">Chiamata video in arrivo....</string>
+    <string name="decline">Rifiuta</string>
+    <string name="accept">Accetta</string>
+    <string name="fake_video_call">Chiamata video falsa</string>
+    <string name="fake_message">Messaggio falso</string>
+    <string name="see_more">Vedi altro</string>
+    <string name="fake_call">Chiamata falsa</string>
+    <string name="call_coming">Chiamata in arrivo...</string>
+    <string name="harry_potter">Harry Potter</string>
+    <string name="search">Cerca</string>
+    <string name="settings">Impostazioni</string>
+    <string name="sound">Suono</string>
+    <string name="vibration">Vibrazione</string>
+    <string name="flash">Flash</string>
+    <string name="language">Lingua</string>
+    <string name="rate_us">Valutaci</string>
+    <string name="select_language">Seleziona lingua</string>
+    <string name="this_action_can_be_contain_ads">Questa azione può contenere annunci...</string>
+    <string name="fake_audio_call">Chiamata audio falsa</string>
+    <string name="fakes_chat">Chat falsa</string>
+    <string name="how_do_you_feel_about_the_call">Come ti senti riguardo alla chiamata?</string>
+    <string name="message">Messaggio</string>
+    <string name="reminder">Promemoria</string>
+    <string name="close">Chiudi</string>
+    <string name="good">Buono</string>
+    <string name="not_good">Non Buono</string>
+    <string name="incoming_audio_call">Chiamata in arrivo.....</string>
+    <string name="start">Inizia</string>
+    <string name="next">Avanti</string>
+</resources>

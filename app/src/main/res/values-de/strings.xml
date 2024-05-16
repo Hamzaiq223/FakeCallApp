@@ -1,2 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Falscher Anruf</string>
+    <string name="name">Harry Potter</string>
+    <string name="incoming_video_call">Eingehender Videoanruf....</string>
+    <string name="decline">Abweisen</string>
+    <string name="accept">Akzeptieren</string>
+    <string name="fake_video_call">Falscher Videoanruf</string>
+    <string name="fake_message">Falsche Nachricht</string>
+    <string name="see_more">Mehr sehen</string>
+    <string name="fake_call">Falscher Anruf</string>
+    <string name="call_coming">Anruf kommt...</string>
+    <string name="harry_potter">Harry Potter</string>
+    <string name="search">Suchen</string>
+    <string name="settings">Einstellungen</string>
+    <string name="sound">Ton</string>
+    <string name="vibration">Vibration</string>
+    <string name="flash">Blitz</string>
+    <string name="language">Sprache</string>
+    <string name="rate_us">Bewerten Sie uns</string>
+    <string name="select_language">Sprache auswählen</string>
+    <string name="this_action_can_be_contain_ads">Diese Aktion kann Werbung enthalten...</string>
+    <string name="fake_audio_call">Falscher Audi Anruf</string>
+    <string name="fakes_chat">Falsches Chat</string>
+    <string name="how_do_you_feel_about_the_call">Wie fühlen Sie sich über den Anruf?</string>
+    <string name="message">Nachricht</string>
+    <string name="reminder">Erinnerung</string>
+    <string name="close">Schließen</string>
+    <string name="good">Gut</string>
+    <string name="not_good">Nicht gut</string>
+    <string name="incoming_audio_call">Eingehender Anruf.....</string>
+    <string name="start">Starten</string>
+    <string name="next">Weiter</string>
+</resources>

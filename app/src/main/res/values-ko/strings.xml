@@ -1,2 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">가짜 전화</string>
+    <string name="name">해리 포터</string>
+    <string name="incoming_video_call">수신 비디오 통화....</string>
+    <string name="decline">거부</string>
+    <string name="accept">수락</string>
+    <string name="fake_video_call">가짜 비디오 통화</string>
+    <string name="fake_message">가짜 메시지</string>
+    <string name="see_more">더 보기</string>
+    <string name="fake_call">가짜 전화</string>
+    <string name="call_coming">전화가 오고 있습니다...</string>
+    <string name="harry_potter">해리 포터</string>
+    <string name="search">검색</string>
+    <string name="settings">설정</string>
+    <string name="sound">소리</string>
+    <string name="vibration">진동</string>
+    <string name="flash">플래시</string>
+    <string name="language">언어</string>
+    <string name="rate_us">평가하기</string>
+    <string name="select_language">언어 선택</string>
+    <string name="this_action_can_be_contain_ads">이 작업에는 광고가 포함될 수 있습니다...</string>
+    <string name="fake_audio_call">가짜 음성 통화</string>
+    <string name="fakes_chat">가짜 채팅</string>
+    <string name="how_do_you_feel_about_the_call">전화에 대해 어떻게 생각하십니까?</string>
+    <string name="message">메시지</string>
+    <string name="reminder">리마인더</string>
+    <string name="close">닫기</string>
+    <string name="good">좋음</string>
+    <string name="not_good">별로</string>
+    <string name="incoming_audio_call">수신 전화.....</string>
+    <string name="start">시작</string>
+    <string name="next">다음</string>
+</resources>

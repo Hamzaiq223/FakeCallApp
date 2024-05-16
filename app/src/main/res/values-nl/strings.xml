@@ -1,2 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Nepoproep</string>
+    <string name="name">Harry Potter</string>
+    <string name="incoming_video_call">Inkomende video-oproep....</string>
+    <string name="decline">Weigeren</string>
+    <string name="accept">Accepteren</string>
+    <string name="fake_video_call">Nep video-oproep</string>
+    <string name="fake_message">Nep bericht</string>
+    <string name="see_more">Meer bekijken</string>
+    <string name="fake_call">Nepoproep</string>
+    <string name="call_coming">Oproep komt eraan...</string>
+    <string name="harry_potter">Harry Potter</string>
+    <string name="search">Zoeken</string>
+    <string name="settings">Instellingen</string>
+    <string name="sound">Geluid</string>
+    <string name="vibration">Trilling</string>
+    <string name="flash">Flits</string>
+    <string name="language">Taal</string>
+    <string name="rate_us">Beoordeel ons</string>
+    <string name="select_language">Selecteer taal</string>
+    <string name="this_action_can_be_contain_ads">Deze actie kan advertenties bevatten...</string>
+    <string name="fake_audio_call">Nep audio-oproep</string>
+    <string name="fakes_chat">Nep chat</string>
+    <string name="how_do_you_feel_about_the_call">Hoe voelt u zich over de oproep?</string>
+    <string name="message">Bericht</string>
+    <string name="reminder">Herinnering</string>
+    <string name="close">Sluiten</string>
+    <string name="good">Goed</string>
+    <string name="not_good">Niet goed</string>
+    <string name="incoming_audio_call">Inkomende oproep.....</string>
+    <string name="start">Start</string>
+    <string name="next">Volgende</string>
+</resources>

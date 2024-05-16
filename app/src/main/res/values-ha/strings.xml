@@ -1,2 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Gani</string>
+    <string name="name">Harri Potar</string>
+    <string name="incoming_video_call">Vidiyo Fara Waje....</string>
+    <string name="decline">Rufa</string>
+    <string name="accept">Ake</string>
+    <string name="fake_video_call">Fake Vidiyo Waje</string>
+    <string name="fake_message">Fake Rubutu</string>
+    <string name="see_more">Duba Kari</string>
+    <string name="fake_call">Fake Waje</string>
+    <string name="call_coming">Waje Zauna...</string>
+    <string name="harry_potter">Harri Potar</string>
+    <string name="search">Bincika</string>
+    <string name="settings">Saiti</string>
+    <string name="sound">Sauti</string>
+    <string name="vibration">Jerin Jeri</string>
+    <string name="flash">Flash</string>
+    <string name="language">Harshe</string>
+    <string name="rate_us">Dan Sa An Yi</string>
+    <string name="select_language">Zaɓa Harshe</string>
+    <string name="this_action_can_be_contain_ads">Wannan aikin zai iya kara ɓata...</string>
+    <string name="fake_audio_call">Fake Waje</string>
+    <string name="fakes_chat">Fake Tambaya</string>
+    <string name="how_do_you_feel_about_the_call">Me ka yi da wannan waje?</string>
+    <string name="message">Rubutu</string>
+    <string name="reminder">Mai Kyau</string>
+    <string name="close">Kulle</string>
+    <string name="good">Yi</string>
+    <string name="not_good">Ba Yi</string>
+    <string name="incoming_audio_call">Waje Zauna.....</string>
+    <string name="start">Farawa</string>
+    <string name="next">Karshe</string>
+</resources>

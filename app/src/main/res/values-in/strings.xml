@@ -1,2 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Panggilan Palsu</string>
+    <string name="name">Harry Potter</string>
+    <string name="incoming_video_call">Panggilan Video Masuk....</string>
+    <string name="decline">Tolak</string>
+    <string name="accept">Terima</string>
+    <string name="fake_video_call">Panggilan Video Palsu</string>
+    <string name="fake_message">Pesan Palsu</string>
+    <string name="see_more">Lihat Lebih Banyak</string>
+    <string name="fake_call">Panggilan Palsu</string>
+    <string name="call_coming">Panggilan Masuk...</string>
+    <string name="harry_potter">Harry Potter</string>
+    <string name="search">Cari</string>
+    <string name="settings">Pengaturan</string>
+    <string name="sound">Suara</string>
+    <string name="vibration">Getaran</string>
+    <string name="flash">Flash</string>
+    <string name="language">Bahasa</string>
+    <string name="rate_us">Beri Peringkat Kami</string>
+    <string name="select_language">Pilih Bahasa</string>
+    <string name="this_action_can_be_contain_ads">Tindakan ini dapat berisi iklan...</string>
+    <string name="fake_audio_call">Panggilan Audio Palsu</string>
+    <string name="fakes_chat">Obrolan Palsu</string>
+    <string name="how_do_you_feel_about_the_call">Bagaimana perasaan Anda tentang panggilan ini?</string>
+    <string name="message">Pesan</string>
+    <string name="reminder">Pengingat</string>
+    <string name="close">Tutup</string>
+    <string name="good">Baik</string>
+    <string name="not_good">Tidak Baik</string>
+    <string name="incoming_audio_call">Panggilan Masuk.....</string>
+    <string name="start">Mulai</string>
+    <string name="next">Berikutnya</string>
+</resources>

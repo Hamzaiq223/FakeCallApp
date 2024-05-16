@@ -1,2 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">שיחה מזויפת</string>
+    <string name="name">הארי פוטר</string>
+    <string name="incoming_video_call">שיחת וידאו נכנסת....</string>
+    <string name="decline">דחה</string>
+    <string name="accept">קבל</string>
+    <string name="fake_video_call">שיחת וידאו מזויפת</string>
+    <string name="fake_message">הודעה מזויפת</string>
+    <string name="see_more">ראה עוד</string>
+    <string name="fake_call">שיחה מזויפת</string>
+    <string name="call_coming">שיחה בדרך...</string>
+    <string name="harry_potter">הארי פוטר</string>
+    <string name="search">חפש</string>
+    <string name="settings">הגדרות</string>
+    <string name="sound">צליל</string>
+    <string name="vibration">רטט</string>
+    <string name="flash">פלאש</string>
+    <string name="language">שפה</string>
+    <string name="rate_us">דרג אותנו</string>
+    <string name="select_language">בחר שפה</string>
+    <string name="this_action_can_be_contain_ads">פעולה זו עשויה להכיל מודעות...</string>
+    <string name="fake_audio_call">שיחה אודיו מזויפת</string>
+    <string name="fakes_chat">צ\'אט מזויף</string>
+    <string name="how_do_you_feel_about_the_call">איך אתה מרגיש לגבי השיחה?</string>
+    <string name="message">הודעה</string>
+    <string name="reminder">תזכורת</string>
+    <string name="close">סגור</string>
+    <string name="good">טוב</string>
+    <string name="not_good">לא טוב</string>
+    <string name="incoming_audio_call">שיחה נכנסת.....</string>
+    <string name="start">התחל</string>
+    <string name="next">הבא</string>
+</resources>

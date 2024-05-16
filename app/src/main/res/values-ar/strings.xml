@@ -1,2 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">المكالمة الوهمية</string>
+    <string name="name">هاري بوتر</string>
+    <string name="incoming_video_call">مكالمة فيديو واردة....</string>
+    <string name="decline">رفض</string>
+    <string name="accept">قبول</string>
+    <string name="fake_video_call">مكالمة فيديو وهمية</string>
+    <string name="fake_message">رسالة وهمية</string>
+    <string name="see_more">رؤية المزيد</string>
+    <string name="fake_call">مكالمة وهمية</string>
+    <string name="call_coming">الاتصال قادم...</string>
+    <string name="harry_potter">هاري بوتر</string>
+    <string name="search">بحث</string>
+    <string name="settings">الإعدادات</string>
+    <string name="sound">الصوت</string>
+    <string name="vibration">الاهتزاز</string>
+    <string name="flash">وميض</string>
+    <string name="language">اللغة</string>
+    <string name="rate_us">قيمنا</string>
+    <string name="select_language">اختر اللغة</string>
+    <string name="this_action_can_be_contain_ads">هذا الإجراء قد يحتوي على إعلانات...</string>
+    <string name="fake_audio_call">مكالمة صوتية وهمية</string>
+    <string name="fakes_chat">محادثة وهمية</string>
+    <string name="how_do_you_feel_about_the_call">كيف تشعر بالمكالمة؟</string>
+    <string name="message">رسالة</string>
+    <string name="reminder">تذكير</string>
+    <string name="close">إغلاق</string>
+    <string name="good">جيد</string>
+    <string name="not_good">ليس جيداً</string>
+    <string name="incoming_audio_call">مكالمة صوتية واردة.....</string>
+    <string name="start">بدء</string>
+    <string name="next">التالي</string>
+</resources>

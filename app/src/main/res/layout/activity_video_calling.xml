@@ -50,45 +50,31 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <LinearLayout
-                android:id="@+id/layoutHideView"
+
+
+            <ImageView
+                android:id="@+id/ivCamera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:layout_marginEnd="20dp"
                 android:layout_gravity="center"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/icon_camera_on" />
 
-                android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/ivCamera"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/icon_camera_on" />
 
-            </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/btnVolume"
+
+            <ImageView
+                android:id="@+id/ivVolume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:layout_marginEnd="20dp"
                 android:layout_gravity="center"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                >
+                android:src="@drawable/icon_mic_on" />
 
-                <ImageView
-                    android:id="@+id/ivVolume"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/icon_mic_on" />
 
-            </LinearLayout>
 
             <ImageView
                 android:id="@+id/ivEndCall"
@@ -96,50 +82,35 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:clickable="true"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="10dp"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/icon_end_call"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <LinearLayout
-                android:id="@+id/layoutRotate"
+
+
+            <ImageView
+                android:id="@+id/ivRotateCamera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginEnd="20dp"
-                android:gravity="center"
-                >
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/icon_rotation" />
 
-                <ImageView
-                    android:id="@+id/ivRotateCamera"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:clickable="true"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/icon_rotation" />
 
-            </LinearLayout>
-
-            <LinearLayout
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
-                tools:layout_editor_absoluteX="363dp"
-                tools:layout_editor_absoluteY="683dp">
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/icon_more" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:clickable="true"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/icon_more" />
 
-            </LinearLayout>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

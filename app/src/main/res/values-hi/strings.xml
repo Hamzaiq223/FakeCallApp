@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">झूठी कॉल</string>
+    <string name="app_name">फेक कॉल</string>
     <string name="name">हैरी पॉटर</string>
-    <string name="incoming_video_call">वीडियो कॉल आ रही है...</string>
+    <string name="incoming_video_call">इनकमिंग वीडियो कॉल....</string>
     <string name="decline">अस्वीकार करें</string>
     <string name="accept">स्वीकार करें</string>
-    <string name="fake_video_call">झूठी वीडियो कॉल</string>
-    <string name="fake_message">झूठा संदेश</string>
+    <string name="fake_video_call">फेक वीडियो कॉल</string>
+    <string name="fake_message">फेक संदेश</string>
     <string name="see_more">अधिक देखें</string>
-    <string name="fake_call">झूठी कॉल</string>
-    <string name="call_coming">आ रही है कॉल...</string>
-    <string name="harry_potter">हैरी पॉटर</string> को हिंदी में
+    <string name="fake_call">फेक कॉल</string>
+    <string name="call_coming">कॉल आ रही है...</string>
+    <string name="harry_potter">हैरी पॉटर</string>
+    <string name="search">खोजें</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="sound">ध्वनि</string>
+    <string name="vibration">वाइब्रेशन</string>
+    <string name="flash">फ्लैश</string>
+    <string name="language">भाषा</string>
+    <string name="rate_us">हमें रेट करें</string>
+    <string name="select_language">भाषा चुनें</string>
+    <string name="this_action_can_be_contain_ads">यह क्रिया विज्ञापनों को शामिल कर सकती है...</string>
+    <string name="fake_audio_call">फेक ऑडियो कॉल</string>
+    <string name="fakes_chat">फेक चैट</string>
+    <string name="how_do_you_feel_about_the_call">कॉल के बारे में आप कैसा महसूस करते हैं?</string>
+    <string name="message">संदेश</string>
+    <string name="reminder">स्मरण</string>
+    <string name="close">बंद करें</string>
+    <string name="good">अच्छा</string>
+    <string name="not_good">अच्छा नहीं</string>
+    <string name="incoming_audio_call">इनकमिंग कॉल.....</string>
+    <string name="start">शुरू करें</string>
+    <string name="next">अगला</string>
 </resources>
