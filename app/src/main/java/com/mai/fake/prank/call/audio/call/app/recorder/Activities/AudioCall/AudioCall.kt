@@ -33,10 +33,32 @@ class AudioCall : AppCompatActivity() {
     private lateinit var binding: ActivityAudioCallBinding
     private var isAudioPlaying = false
     private var receivedString: String? = null
+    private var isMicOff = false
+    private var isVolumeOff = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_audio_call)
+
+        binding.ivMicOff.setOnClickListener{
+            if(isMicOff){
+                binding.ivMicOff.setImageResource(R.drawable.icon_volume)
+                isMicOff = false
+            }else{
+                binding.ivMicOff.setImageResource(R.drawable.ic_mic_off)
+                isMicOff = true
+            }
+        }
+
+        binding.ivVolumeOff.setOnClickListener{
+            if(isVolumeOff){
+                binding.ivVolumeOff.setImageResource(R.drawable.volume)
+                isVolumeOff = false
+            }else{
+                binding.ivVolumeOff.setImageResource(R.drawable.ic_volume_off)
+                isVolumeOff = true
+            }
+        }
 
         if (mediaPlayer == null) {
             mediaPlayer = MediaPlayer()
@@ -56,6 +78,8 @@ class AudioCall : AppCompatActivity() {
 
         storage = FirebaseStorage.getInstance()
         storageRef = storage.reference
+
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.decorView.systemUiVisibility =
@@ -145,6 +169,7 @@ class AudioCall : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        mediaPlayer = MediaPlayer()
         playAudioWithTimer(receivedString)
     }
 
