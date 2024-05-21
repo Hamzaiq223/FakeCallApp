@@ -22,6 +22,7 @@ import com.mai.fake.prank.call.audio.call.app.recorder.Activities.VideoCall.Vide
 import com.mai.fake.prank.call.audio.call.app.recorder.Common.BlurBuilder
 import com.mai.fake.prank.call.audio.call.app.recorder.Common.CharacterImageHelper
 import com.mai.fake.prank.call.audio.call.app.recorder.Common.FlashlightController
+import com.mai.fake.prank.call.audio.call.app.recorder.Common.SharedHelper
 import com.mai.fake.prank.call.audio.call.app.recorder.R
 import com.ncorti.slidetoact.SlideToActView
 
@@ -40,13 +41,24 @@ class IncomingVideoCall : AppCompatActivity() {
     private lateinit var vibrator: Vibrator
     private val handler = Handler()
     private var isVibrating = false
+    var flash: Boolean = false
     private val buttonHandler = Handler()
     private var receivedString: String? = null
     private lateinit var tvCallStatus : TextView
+    private lateinit var flashlightController: FlashlightController
+    private val flashHandler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_incoming_video_call)
+
+        var volume: Boolean
+        var vibration: Boolean
+
+        volume = SharedHelper.getBoolean(this, "volume_off", false)
+        vibration = SharedHelper.getBoolean(this, "vibration_off", false)
+        flash = SharedHelper.getBoolean(this, "flash_off", false)
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.decorView.systemUiVisibility =
@@ -98,19 +110,42 @@ class IncomingVideoCall : AppCompatActivity() {
         // Initialize the MediaPlayer
         mediaPlayer = MediaPlayer.create(this, R.raw.iphone_ringtone)
 
-        // Start playing the ringtone
-        mediaPlayer?.let {
-            it.start()
-            it.setOnCompletionListener { mp ->
-                // Stop the vibration when the ringtone ends
-                stopVibration()
-                handler.removeCallbacks(vibrationRunnable)
+        if(!volume){
+            // Start playing the ringtone
+            mediaPlayer?.let {
+                it.start()
+                it.setOnCompletionListener { mp ->
+                    // Stop the vibration when the ringtone ends
+                    stopVibration()
+                    handler.removeCallbacks(vibrationRunnable)
 
+                }
             }
         }
 
-        // Start the vibration scheduler
-        handler.post(vibrationRunnable)
+        if (!vibration) {
+            // Start the vibration scheduler
+            handler.post(vibrationRunnable)
+        }
+
+        if (!flash) {
+            flashlightController = FlashlightController(this)
+            // Start the flashlight scheduler
+            flashHandler.post(flashlightRunnable)
+        }
+
+    }
+
+    private val flashlightRunnable: Runnable = object : Runnable {
+        override fun run() {
+            if(!flash){
+                flashlightController.turnOnFlash()
+                // To turn off the flashlight
+                flashlightController.turnOffFlash()
+            }
+            // Schedule the next flashlight toggle after 1 second
+            flashHandler.postDelayed(this, 1000)
+        }
     }
 
     private fun showButton(){
@@ -136,11 +171,6 @@ class IncomingVideoCall : AppCompatActivity() {
                 }
             }
 
-            val flashlightController = FlashlightController(this)
-            // To turn on the flashlight
-            flashlightController.turnOnFlash()
-            // To turn off the flashlight
-            flashlightController.turnOffFlash()
 
         } catch (e: Exception) {
             e.printStackTrace()
@@ -177,6 +207,7 @@ class IncomingVideoCall : AppCompatActivity() {
     private fun remove(){
         handler.removeCallbacksAndMessages(null) // Cancel all scheduled callbacks
         stopVibration()
+        flashHandler.removeCallbacksAndMessages(null) // Cancel all flashlight scheduled callbacks
 
         // Release the MediaPlayer and stop the vibration when the activity is destroyed
         mediaPlayer?.let {

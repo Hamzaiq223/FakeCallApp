@@ -48,6 +48,7 @@ class VideoCalling : AppCompatActivity(),  MediaPlayer.OnCompletionListener {
     private lateinit var mediaPlayer: MediaPlayer
 
     private lateinit var storage: FirebaseStorage
+
     private lateinit var storageRef: StorageReference
 
     private lateinit var videoCallBinding: ActivityVideoCallingBinding

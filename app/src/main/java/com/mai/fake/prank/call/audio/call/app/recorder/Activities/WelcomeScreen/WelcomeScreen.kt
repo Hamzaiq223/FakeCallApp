@@ -35,6 +35,8 @@ class WelcomeScreen : AppCompatActivity() {
         warmDotIndicator = findViewById(R.id.worm_dots_indicator)
         tvNext = findViewById(R.id.tvNext)
 
+        var count = 0
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -47,7 +49,21 @@ class WelcomeScreen : AppCompatActivity() {
         viewPager.adapter = adapter
         warmDotIndicator.attachTo(viewPager)
 
-        var count = 0
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+
+            override fun onPageSelected(position: Int) {
+                if (position == items.size - 1) {
+                    tvNext.setText(getString(R.string.next))
+                } else {
+                    tvNext.setText(getString(R.string.start))
+                }
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {}
+        })
+
+
         tvNext.setOnClickListener{
              if(count == 0) {
                  tvNext.setText(getString(R.string.next))
