@@ -65,15 +65,17 @@ class WelcomeScreen : AppCompatActivity() {
 
 
         tvNext.setOnClickListener{
-             if(count == 0) {
+             if(tvNext.text.equals("Start")) {
                  tvNext.setText(getString(R.string.next))
                  viewPager.setCurrentItem(1)
                  count++
              }else{
-                 val intent = Intent(this@WelcomeScreen, Splash::class.java)
-                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                 startActivity(intent)
-                 finish() // Finish the WelcomeScreen activity
+                if(tvNext.text.equals("Next")){
+                    val intent = Intent(this@WelcomeScreen, Splash::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish() // Finish the WelcomeScreen activity
+                }
              }
         }
 
