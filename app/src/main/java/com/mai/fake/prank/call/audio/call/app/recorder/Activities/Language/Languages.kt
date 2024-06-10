@@ -83,9 +83,9 @@ class Languages : AppCompatActivity(), LanguagesAdapter.Click {
 
      fun changeLanguage(context: Context, language: String) {
         val locale: Locale = when (language) {
-            "French" -> Locale("fr")
             "Urdu" -> Locale("ur")
             "Espanol" -> Locale("es")
+            "français" -> Locale("fr")
             "عربي" -> Locale("ar")
             "اردو" -> Locale("ur")
             "日本語" -> Locale("ja")
