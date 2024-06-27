@@ -40,6 +40,8 @@ class AudioCharacters : AppCompatActivity() ,CharacterListAdapter.Click{
         itemList.add(CharactersModel("Lionel Messi", "Leo Messi", R.drawable.leo_messi))
         itemList.add(CharactersModel("Santa Claus", "Santa", R.drawable.santa))
         itemList.add(CharactersModel("Lee Min Hoo", "LeeMinHo", R.drawable.lee_min_ho))
+        itemList.add(CharactersModel("Jisso", "Jisso", R.drawable.jisso))
+        itemList.add(CharactersModel("Jennie", "Jennie", R.drawable.jennie))
 
         val layoutManager = GridLayoutManager(this, 3)
         audioCharactersBinding.rvAudioCharacters.layoutManager = layoutManager

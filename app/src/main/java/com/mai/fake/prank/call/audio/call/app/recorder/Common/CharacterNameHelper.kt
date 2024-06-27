@@ -19,7 +19,8 @@ object CharacterNameHelper {
         folderCharacterMap?.put( "Beiber","Justin Bieber" )
         folderCharacterMap?.put("Ghost","Ghost")
         folderCharacterMap?.put("Scientists","Scientists")
-        folderCharacterMap?.put("LeeMinHo","Lee Min Hoo")
+        folderCharacterMap?.put("Jisso","Jisso")
+        folderCharacterMap?.put("Jennie","Jennie")
         // Add more mappings for other folders as needed
     }
 

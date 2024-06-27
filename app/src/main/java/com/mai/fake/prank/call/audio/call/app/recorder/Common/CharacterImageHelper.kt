@@ -24,6 +24,8 @@ object CharacterImageHelper {
         characterImagesMap?.put("Scientists", R.drawable.scientists)
         characterImagesMap?.put("Leo Messi", R.drawable.leo_messi)
         characterImagesMap?.put("LeeMinHo", R.drawable.lee_min_ho)
+        characterImagesMap?.put("Jisso", R.drawable.jisso)
+        characterImagesMap?.put("Jennie", R.drawable.jennie)
         // Add more mappings for other characters as needed
     }
 

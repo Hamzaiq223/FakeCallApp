@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), VCAdapter.ClickListener, ACAdapter.Cli
         arrayList.add(CharactersModel("C Ronaldo", "Ronaldo", R.drawable.c_ronaldo))
         arrayList.add(CharactersModel("Leo Messi", "Leo Messi", R.drawable.leo_messi))
         arrayList.add(CharactersModel("Santa Claus","Santa",R.drawable.santa))
-        arrayList.add(CharactersModel("Taylor Swift", "Taylor Swift", R.drawable.taylor_swift))
+        arrayList.add(CharactersModel("Jennie", "Jennie", R.drawable.jennie))
 
         vcAdapter = VCAdapter(this, arrayList, this)
         binding.rvVideoCall.adapter = vcAdapter
