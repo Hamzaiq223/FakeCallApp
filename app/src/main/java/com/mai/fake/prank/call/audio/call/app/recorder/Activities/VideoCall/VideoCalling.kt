@@ -181,7 +181,7 @@ class VideoCalling : AppCompatActivity(),  MediaPlayer.OnCompletionListener {
 
         Handler().postDelayed({
             hideLoader()
-        }, 5000)
+        }, 8000)
     }
 
 
@@ -201,6 +201,7 @@ class VideoCalling : AppCompatActivity(),  MediaPlayer.OnCompletionListener {
 
             override fun onFinish() {
                 videoCallBinding.videoView.stopPlayback()
+                finish()
             }
         }.start()
     }
