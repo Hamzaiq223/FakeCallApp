@@ -26,6 +26,7 @@ object CharacterImageHelper {
         characterImagesMap?.put("LeeMinHo", R.drawable.lee_min_ho)
         characterImagesMap?.put("Jisso", R.drawable.jisso)
         characterImagesMap?.put("Jennie", R.drawable.jennie)
+        characterImagesMap?.put("JHope", R.drawable.j_hope)
         // Add more mappings for other characters as needed
     }
 
