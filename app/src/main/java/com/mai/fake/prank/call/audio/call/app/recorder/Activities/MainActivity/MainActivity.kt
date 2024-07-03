@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.google.firebase.FirebaseApp
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.AudioCall.AudioCall
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.AudioCharacters.AudioCharacters
 import com.mai.fake.prank.call.audio.call.app.recorder.Activities.Chat.Chat
@@ -52,6 +53,8 @@ class MainActivity : AppCompatActivity(), VCAdapter.ClickListener, ACAdapter.Cli
         arrayList.add(CharactersModel("Leo Messi", "Leo Messi", R.drawable.leo_messi))
         arrayList.add(CharactersModel("Santa Claus","Santa",R.drawable.santa))
         arrayList.add(CharactersModel("Jennie", "Jennie", R.drawable.jennie))
+
+        FirebaseApp.initializeApp(this)
 
         vcAdapter = VCAdapter(this, arrayList, this)
         binding.rvVideoCall.adapter = vcAdapter

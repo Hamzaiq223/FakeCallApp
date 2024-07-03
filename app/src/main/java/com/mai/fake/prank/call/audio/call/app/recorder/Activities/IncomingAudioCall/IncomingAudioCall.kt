@@ -229,6 +229,8 @@ class IncomingAudioCall : AppCompatActivity() {
 
         receivedString = intent.getStringExtra("characterName")
 
+        binding.tvName.setText(receivedString)
+
         val context: Context = applicationContext // or any valid context
         val characterDrawable: Int? = CharacterImageHelper.getCharacterImageResourceId(context, receivedString!!)
 

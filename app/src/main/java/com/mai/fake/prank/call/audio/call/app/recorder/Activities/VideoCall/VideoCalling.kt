@@ -181,7 +181,7 @@ class VideoCalling : AppCompatActivity(),  MediaPlayer.OnCompletionListener {
 
         Handler().postDelayed({
             hideLoader()
-        }, 8000)
+        }, 13000)
     }
 
 

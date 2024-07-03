@@ -33,6 +33,7 @@ class IncomingVideoCall : AppCompatActivity() {
     private lateinit var storageRef: StorageReference
     private lateinit var ivUser: ImageView
     private lateinit var ivBlurBackground: ImageView
+    private lateinit var tvName: TextView
     private lateinit var btnSlide: SlideToActView
     private lateinit var layoutMessage: LinearLayout
     private lateinit var btnReturn: TextView
@@ -68,8 +69,8 @@ class IncomingVideoCall : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
 
-        FirebaseApp.initializeApp(this)
 
+        tvName = findViewById(R.id.tvName)
         ivUser = findViewById(R.id.ivUser)
         ivBlurBackground = findViewById(R.id.ivImage)
         layoutMessage = findViewById(R.id.layoutMessage)
@@ -81,6 +82,8 @@ class IncomingVideoCall : AppCompatActivity() {
         storageRef = storage.reference
 
         receivedString = intent.getStringExtra("characterName")
+
+        tvName.text = receivedString
 
         val context: Context = applicationContext // or any valid context
         val characterDrawable: Int? = CharacterImageHelper.getCharacterImageResourceId(context, receivedString!!)

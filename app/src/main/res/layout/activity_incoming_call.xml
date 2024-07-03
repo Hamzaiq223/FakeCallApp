@@ -30,11 +30,11 @@
             app:layout_constraintTop_toTopOf="@+id/ivImage" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="C Ronaldo"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="25dp"
             android:textStyle="bold"
@@ -51,9 +51,9 @@
             android:textColor="@color/white"
             android:background="@color/transparent_color"
             android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="@+id/textView2"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintEnd_toEndOf="@+id/tvName"
+            app:layout_constraintStart_toStartOf="@+id/tvName"
+            app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
         <TextView
             android:id="@+id/btnReturn"
